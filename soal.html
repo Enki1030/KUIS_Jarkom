@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetQuiz Pro: 50 Soal Baru - Edisi Khusus</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#4f46e5',
+                            dark: '#6366f1',
+                            success: '#10b981',
+                            danger: '#ef4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-bar-transition {
+            transition: width 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50 transition-colors">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">NetQuiz Pro</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Kumpulan 50 Soal Baru Tanpa Duplikat</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <!-- Toggle Sound -->
+                <button id="btnSound" onclick="toggleSound()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition-colors" title="Suara Efek">
+                    <svg id="svgSoundOn" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    </svg>
+                    <svg id="svgSoundOff" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zm11.364-8.486l-.707.707M16.243 16.243l.707.707m-1.414-1.414l1.414-1.414m-1.414 0l-1.414 1.414" />
+                    </svg>
+                </button>
+                
+                <!-- Toggle Theme -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition-colors" title="Tema Gelap/Terang">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-4 md:py-8 flex flex-col justify-start">
+        
+        <!-- ================= LAUNCHPAD / DASHBOARD ================= -->
+        <section id="screenDashboard" class="space-y-6">
+            <div class="bg-gradient-to-r from-indigo-600 to-violet-700 text-white p-6 md:p-8 rounded-2xl shadow-md relative overflow-hidden">
+                <div class="relative z-10 max-w-xl">
+                    <span class="bg-white/20 text-xs uppercase font-semibold px-3 py-1 rounded-full tracking-wider">Persiapan Ujian Tingkat Lanjut</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold mt-3 mb-2 leading-tight">Taklukkan 50 Soal Baru (Hard Mode)</h2>
+                    <p class="text-indigo-100 text-sm md:text-base mb-6">Database ini berisi 50 soal murni baru tanpa duplikat dari rekapitulasi week 9-14. Opsi jawaban telah dikamuflase secara visual agar tidak bisa ditebak dari panjangnya teks.</p>
+                    <button onclick="startCustomQuiz(50, false)" class="bg-white text-indigo-700 hover:bg-slate-100 font-bold px-6 py-3 rounded-xl transition shadow-md active:scale-95 inline-flex items-center space-x-2">
+                        <span>Kerjakan Semua 50 Soal</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Total Soal Baru</span>
+                    <span class="text-2xl font-bold mt-1 text-slate-800 dark:text-white">50 Soal</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Rata-rata Akurasi</span>
+                    <span id="statAccuracy" class="text-2xl font-bold mt-1 text-slate-800 dark:text-white">-</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Sesi Diselesaikan</span>
+                    <span id="statCompleted" class="text-2xl font-bold mt-1 text-slate-800 dark:text-white">0 Sesi</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Ditandai (Flagged)</span>
+                    <span id="statFlaggedCount" class="text-2xl font-bold mt-1 text-amber-500 font-mono">0 Soal</span>
+                </div>
+            </div>
+
+            <!-- Sessions (Sesi 1 & Sesi 2) -->
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-2">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-white">Daftar Sesi Pembelajaran</h3>
+                <p class="text-xs text-slate-500 mt-1">Kami membagi 50 soal baru ini ke dalam 2 sesi terarah (masing-masing 25 soal) untuk pelatihan bertahap.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Sesi 1 -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-600 transition-all duration-200">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 text-xs font-bold px-3 py-1 rounded-full">Sesi 1 (Soal 1 - 25)</span>
+                            <span class="text-xs text-slate-400" id="session1-badge">Belum Selesai</span>
+                        </div>
+                        <h4 class="font-bold text-base mb-1 text-slate-800 dark:text-white">Routing Dynamics &amp; SNMP Core</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Uji mendalam mengenai ICMP Echo, Match-action, MIB, Trap, algoritma routing (Dijkstra, Distance-Vector, OSPF, BGP, NEXT-HOP, logically centralized control).</p>
+                    </div>
+                    <button onclick="startSession(1)" class="w-full bg-slate-100 hover:bg-indigo-600 hover:text-white dark:bg-slate-700 dark:hover:bg-indigo-500 font-semibold text-slate-800 dark:text-slate-200 py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-1">
+                        <span>Mulai Sesi 1</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+
+                <!-- Sesi 2 -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between hover:border-indigo-400 dark:hover:border-indigo-600 transition-all duration-200">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 text-xs font-bold px-3 py-1 rounded-full">Sesi 2 (Soal 26 - 50)</span>
+                            <span class="text-xs text-slate-400" id="session2-badge">Belum Selesai</span>
+                        </div>
+                        <h4 class="font-bold text-base mb-1 text-slate-800 dark:text-white">Link Layer &amp; Advanced Security</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">Uji pemahaman tentang multiple access, CSMA, parity checking, link layer implementation, ethernet flooding, data center virtualization, beamforming, TLS, hashing, nonce, dan replay attack.</p>
+                    </div>
+                    <button onclick="startSession(2)" class="w-full bg-slate-100 hover:bg-indigo-600 hover:text-white dark:bg-slate-700 dark:hover:bg-indigo-500 font-semibold text-slate-800 dark:text-slate-200 py-2.5 rounded-xl transition text-sm flex items-center justify-center space-x-1">
+                        <span>Mulai Sesi 2</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Custom Setup Card -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 class="text-base font-bold text-slate-800 dark:text-white mb-4 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span>Latihan Kustom</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Jumlah Pertanyaan</label>
+                        <select id="selectCustomCount" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="10">10 Soal Acak</option>
+                            <option value="25" selected>25 Soal Acak</option>
+                            <option value="50">Semua 50 Soal</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Mode Pengatur Waktu</label>
+                        <select id="selectTimerMode" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="0">Tanpa Batas Waktu</option>
+                            <option value="15">Cepat (15 Detik / Soal)</option>
+                            <option value="30" selected>Standar (30 Detik / Soal)</option>
+                            <option value="60">Santai (60 Detik / Soal)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col justify-end">
+                        <button onclick="startSetupCustomQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition shadow-sm hover:shadow active:scale-95 text-sm">
+                            Mulai Kuis Kustom
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flagged Container -->
+                <div id="divFlaggedContainer" class="mt-6 pt-5 border-t border-slate-100 dark:border-slate-700 hidden">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="p-1.5 bg-amber-100 dark:bg-amber-950 rounded-lg text-amber-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Latih Soal Flagged</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Kerjakan kembali kumpulan soal sulit yang telah Anda tandai sebelumnya.</p>
+                            </div>
+                        </div>
+                        <button onclick="startFlaggedQuiz()" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition active:scale-95">
+                            Uji Soal Bertanda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= QUIZ PLAYING SCREEN ================= -->
+        <section id="screenQuiz" class="space-y-6 hidden">
+            <!-- Header bar / Progress info -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex justify-between items-center transition-colors">
+                <div class="flex items-center space-x-3">
+                    <button onclick="confirmExitQuiz()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg" title="Keluar dari Kuis">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </button>
+                    <div>
+                        <span id="txtQuizSource" class="text-xs font-bold text-indigo-500 block">Sesi 1</span>
+                        <span id="txtQuestionProgress" class="text-sm font-semibold">Pertanyaan 1 dari 25</span>
+                    </div>
+                </div>
+                
+                <!-- Timer and bookmark -->
+                <div class="flex items-center space-x-3">
+                    <div id="boxTimer" class="flex items-center space-x-1.5 px-3 py-1 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-mono text-sm font-bold rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 animate-spin-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="lblCountdown">30s</span>
+                    </div>
+                    
+                    <button id="btnFlagActive" onclick="toggleFlagOnCurrentQuestion()" class="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors text-slate-400 hover:text-amber-500 focus:outline-none" title="Tandai Pertanyaan">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="pathFlag" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                <div id="barQuizProgress" class="bg-indigo-600 h-full progress-bar-transition" style="width: 4%"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6 transition-colors">
+                <div class="space-y-2">
+                    <span id="lblQuestionTopic" class="text-xs uppercase bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full font-bold text-slate-500 dark:text-slate-300">Net Layer</span>
+                    <h3 id="txtQuestionText" class="text-base md:text-lg font-bold text-slate-800 dark:text-white leading-relaxed">
+                        Pertanyaan memuat...
+                    </h3>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="divOptionsContainer" class="grid grid-cols-1 gap-3">
+                    <!-- Options loaded by script dynamically -->
+                </div>
+
+                <!-- Explanation Area -->
+                <div id="boxExplanation" class="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900 rounded-xl p-4 space-y-2 hidden animate-fadeIn">
+                    <div class="flex items-center space-x-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Penjelasan Kunci Jawaban</span>
+                    </div>
+                    <p id="txtExplanationText" class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Analisis lengkap materi terkait di sini.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Navigation -->
+            <div class="flex justify-between items-center">
+                <button id="btnPrev" onclick="navPrevQuestion()" class="bg-white hover:bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold px-5 py-2.5 rounded-xl transition text-sm disabled:opacity-50 flex items-center space-x-1.5 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    <span>Kembali</span>
+                </button>
+                
+                <button id="btnNext" onclick="navNextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl transition text-sm flex items-center space-x-1.5 shadow-sm">
+                    <span id="txtBtnNextLabel">Lanjut</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= RESULTS & ANALYSIS ================= -->
+        <section id="screenResults" class="space-y-6 hidden">
+            <!-- Header card with score badge -->
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 transition-colors">
+                <div class="text-center md:text-left space-y-2">
+                    <span id="lblResultBadge" class="inline-block bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 text-xs font-bold px-3 py-1 rounded-full">Selesai</span>
+                    <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white">Hasil Evaluasi Jaringan Komputer</h2>
+                    <p id="txtResultMotivationalQuote" class="text-sm text-slate-500 dark:text-slate-400 max-w-md">Luar biasa! Analisis tingkat pemahaman Anda terlihat pada bagan akurasi.</p>
+                </div>
+                
+                <!-- Score Circle Indicator -->
+                <div class="relative flex items-center justify-center">
+                    <div class="w-32 h-32 rounded-full border-8 border-indigo-100 dark:border-slate-700 flex flex-col items-center justify-center">
+                        <span id="lblResultPercentage" class="text-3xl font-black text-indigo-600 dark:text-indigo-400">0%</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wide">Akurasi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement / Level Banner -->
+            <div id="divLevelBanner" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm">
+                🏆 Gelar Anda: Dewa Jaringan (Suhu Cisco &amp; Mikrotik)
+            </div>
+
+            <!-- Detail performance metrics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Benar</span>
+                    <span id="lblResCorrect" class="text-2xl font-bold text-emerald-500">0</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Salah</span>
+                    <span id="lblResIncorrect" class="text-2xl font-bold text-rose-500">0</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Skor Akhir</span>
+                    <span id="lblResPoints" class="text-2xl font-bold text-indigo-500">0 / 25</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Waktu Tersisa</span>
+                    <span id="lblResTime" class="text-2xl font-bold text-amber-500 font-mono">-</span>
+                </div>
+            </div>
+
+            <!-- Review Section Area -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div class="p-5 border-b border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <h3 class="font-bold text-base text-slate-800 dark:text-white flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                        <span>Tinjau Kembali Jawaban</span>
+                    </h3>
+                    
+                    <!-- Filters -->
+                    <div class="flex space-x-2">
+                        <button onclick="filterReview('all')" id="btnFilterAll" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-700 dark:text-slate-200 active-filter">Semua</button>
+                        <button onclick="filterReview('wrong')" id="btnFilterWrong" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Hanya Salah</button>
+                        <button onclick="filterReview('flagged')" id="btnFilterFlagged" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Tandai</button>
+                    </div>
+                </div>
+
+                <div id="divReviewList" class="divide-y divide-slate-100 dark:divide-slate-700 max-h-96 overflow-y-auto">
+                    <!-- Review Questions loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex space-x-3">
+                <button onclick="initHomeDashboard()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white font-bold py-3.5 rounded-xl transition text-center text-sm shadow-sm">
+                    Kembali ke Menu Utama
+                </button>
+                <button onclick="restartActiveQuizSession()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl transition text-center text-sm shadow-sm">
+                    Mulai Ulang Kuis Ini
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 transition-colors py-4 text-center mt-8">
+        <p class="text-xs text-slate-400">&copy; 2026 NetQuiz Pro. Desain premium khusus untuk kesiapan ujian.</p>
+    </footer>
+
+    <!-- DOCKABLE NOTIFICATION BAR (NO ALERTS) -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-lg border border-slate-700 text-sm hidden flex items-center space-x-2 z-50 transform translate-y-10 transition-transform duration-300">
+        <span id="toastIcon"></span>
+        <span id="toastMessage">Pesan pemberitahuan...</span>
+    </div>
+
+    <!-- EXIT CONFIRMATION MODAL -->
+    <div id="modalConfirmExit" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 max-w-md w-full rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl space-y-4">
+            <h3 class="text-lg font-bold text-slate-800 dark:text-white">Ingin menghentikan kuis?</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Kemajuan kuis yang sedang berjalan ini tidak akan disimpan jika Anda keluar ke halaman utama.</p>
+            <div class="flex space-x-3">
+                <button onclick="closeExitModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 font-semibold py-2.5 rounded-xl text-sm">Kembali Kuis</button>
+                <button onclick="confirmExitToDashboard()" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded-xl text-sm">Keluar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT KUIS ENGINE -->
+    <script>
+        // MASTER DATABASE 50 SOAL JARINGAN KOMPUTER (MURNI BARU - TANPA DUPLIKAT - OPSI SANGAT SEIMBANG)
+        const MASTER_QUESTIONS = [
+            {
+                id: 1,
+                question: "Apa peran ICMP Echo Request dan Echo Reply dalam jaringan?",
+                options: [
+                    "Mempercepat transmisi paket data dengan mem-bypass router aktif",
+                    "Mengaktifkan pengiriman data multicast ke banyak host sekaligus",
+                    "Menguji konektivitas dan jangkauan antar host di dalam jaringan",
+                    "Mengamankan data dengan algoritma enkripsi biner yang dinamis",
+                    "Mengalokasikan alamat IP secara dinamis pada semua perangkat"
+                ],
+                answer: 2,
+                topic: "Lapisan Jaringan",
+                explanation: "ICMP Echo Request dan Echo Reply adalah pesan kontrol dasar (Type 8 dan Type 0) yang digunakan oleh perintah 'ping' untuk mengukur latensi dan memvalidasi apakah host tujuan sedang aktif."
+            },
+            {
+                id: 2,
+                question: "Bagaimana match-action table bekerja dalam sistem SDN?",
+                options: [
+                    "Menentukan rute terpendek secara dinamis di setiap router lokal",
+                    "Menunda transmisi paket guna meredam dampak kemacetan jaringan",
+                    "Memfilter paket berdasarkan ukuran data payload di dalam header",
+                    "Mencocokkan karakteristik paket dengan aturan dan menjalankan aksi",
+                    "Mengonversi semua alamat IPv4 menjadi IPv6 secara langsung di port"
+                ],
+                answer: 3,
+                topic: "Software-Defined Networking",
+                explanation: "Dalam arsitektur OpenFlow/SDN, match-action table mencocokkan header paket data (port masuk, MAC, IP, atau port TCP) dengan entri aturan dan langsung menjalankan aksi terprogram seperti forward, drop, atau modifikasi."
+            },
+            {
+                id: 3,
+                question: "Apa fungsi utama dari Management Information Base (MIB) dalam SNMP?",
+                options: [
+                    "Menyimpan data statistik dan konfigurasi perangkat sebagai objek",
+                    "Menentukan jalur terbaik untuk melakukan routing di dalam jaringan",
+                    "Mengelola koneksi internet nirkabel pada seluruh komputer lokal",
+                    "Memfilter paket berbahaya yang mencoba melewati firewall jaringan",
+                    "Menyediakan layanan enkripsi data antara server dengan agen lokal"
+                ],
+                answer: 0,
+                topic: "Aplikasi & Manajemen",
+                explanation: "MIB adalah database terstruktur hierarkis (pohon) yang menyimpan informasi status operasional dan konfigurasi dari perangkat jaringan (seperti router atau switch) yang dapat diakses oleh manajer SNMP."
+            },
+            {
+                id: 4,
+                question: "Apa fungsi dari trap messages dalam SNMP?",
+                options: [
+                    "Mengubah konfigurasi perangkat jaringan secara otomatis di pusat",
+                    "Mengamankan jalur komunikasi data antara dua router berbeda",
+                    "Mengalokasikan alamat IP privat secara otomatis ke semua host",
+                    "Menentukan jalur terbaik untuk pengiriman data antar perangkat",
+                    "Melaporkan kejadian luar biasa secara langsung ke server manajer"
+                ],
+                answer: 4,
+                topic: "Aplikasi & Manajemen",
+                explanation: "Trap messages adalah pesan asinkronus yang dikirim oleh SNMP agent secara langsung kepada SNMP manager tanpa menunggu polling, gunanya untuk melaporkan kegagalan atau kejadian kritis (seperti link down)."
+            },
+            {
+                id: 5,
+                question: "Apa tantangan utama dalam Distance-Vector Routing Algorithm dibandingkan dengan Link-State Routing?",
+                options: [
+                    "Tidak mendukung penggunaan sistem pengalamatan IP modern saat ini",
+                    "Menolak pengiriman data jika topologi jaringan mengalami perubahan",
+                    "Membutuhkan waktu konvergensi yang lebih lama saat terjadi perubahan",
+                    "Membutuhkan konfigurasi manual dari admin untuk setiap rute baru",
+                    "Membatasi jumlah maksimal router yang terhubung hanya sepuluh unit"
+                ],
+                answer: 2,
+                topic: "Algoritma Routing",
+                explanation: "Distance-Vector (seperti RIP) menderita masalah lambatnya konvergensi karena menyebarkan informasi rute secara bertahap dari tetangga ke tetangga (count-to-infinity problem), berbeda dengan Link-State yang menyebar instan."
+            },
+            {
+                id: 6,
+                question: "Apa keuntungan utama dari Link-State Routing Algorithm dibandingkan Distance-Vector Routing Algorithm?",
+                options: [
+                    "Menentukan jalur pengiriman berdasarkan ukuran fisik paket data",
+                    "Memiliki informasi topologi utuh untuk menghitung rute terbaik",
+                    "Menunjuk satu router tunggal untuk mengontrol seluruh jaringan",
+                    "Dapat berfungsi dengan sangat baik tanpa memerlukan alamat IP",
+                    "Menghilangkan kebutuhan untuk melakukan pembaruan rute berkala"
+                ],
+                answer: 1,
+                topic: "Algoritma Routing",
+                explanation: "Pada Link-State (OSPF), setiap router mendistribusikan status link-nya sehingga setiap router memiliki salinan database topologi (LSDB) utuh yang identik untuk kalkulasi jalur terpendek via algoritma Dijkstra."
+            },
+            {
+                id: 7,
+                question: "Apa kepanjangan dari BGP dalam konteks routing di Internet?",
+                options: [
+                    "Border Gateway Protocol",
+                    "Best Gateway Pathing",
+                    "Binary Gateway Path",
+                    "Broadband Gateway Processing",
+                    "Backbone Grouping Protocol"
+                ],
+                answer: 0,
+                topic: "Algoritma Routing",
+                explanation: "BGP singkatan dari Border Gateway Protocol, protokol routing antar-AS (inter-domain) yang menjadi tulang punggung penghubung internet global."
+            },
+            {
+                id: 8,
+                question: "Apa tujuan utama dari NEXT-HOP dalam BGP?",
+                options: [
+                    "Menentukan apakah paket dikirim via IPv4 atau IPv6 secara otomatis",
+                    "Menunjuk router berikutnya yang harus dilewati menuju jaringan tujuan",
+                    "Membatasi jumlah paket data yang dikirim dalam satu sesi komunikasi",
+                    "Menandai paket yang wajib dienkripsi sebelum masuk ke jaringan lain",
+                    "Menghitung total waktu tunda yang dialami paket selama di perjalanan"
+                ],
+                answer: 1,
+                topic: "Algoritma Routing",
+                explanation: "NEXT-HOP adalah atribut BGP yang menentukan alamat IP dari router perbatasan (gateway) yang harus dituju untuk melompat ke Autonomous System (AS) berikutnya."
+            },
+            {
+                id: 9,
+                question: "Apa tujuan utama dari routing algorithm dalam jaringan komputer?",
+                options: [
+                    "Mengubah format data digital menjadi sinyal fisik yang stabil di kabel",
+                    "Menghapus paket data yang tidak memiliki alamat IP asal yang terdaftar",
+                    "Menentukan rute terbaik bagi paket data dari sumber menuju ke tujuan",
+                    "Mengontrol pembagian kapasitas bandwidth pada setiap interface router",
+                    "Menyandikan dan mengenkripsi data sebelum dikirimkan ke media luar"
+                ],
+                answer: 2,
+                topic: "Algoritma Routing",
+                explanation: "Tujuan dasar algoritma perutean (routing) adalah merancang dan menghitung rute lintasan paling optimal yang dilalui oleh paket dari host asal hingga ke host tujuan."
+            },
+            {
+                id: 10,
+                question: "Apa keunggulan utama dari logically centralized control dibandingkan dengan per-router control dalam jaringan?",
+                options: [
+                    "Menghilangkan kebutuhan akan alamat IP dalam proses komunikasi data",
+                    "Memastikan seluruh router menggunakan jenis sistem operasi yang sama",
+                    "Mengurangi jumlah perangkat router fisik yang harus dipasang di LAN",
+                    "Memungkinkan semua paket mengalir langsung tanpa perlu dikontrol lagi",
+                    "Memudahkan pengelolaan dan pembaruan aturan rute dari satu titik pusat"
+                ],
+                answer: 4,
+                topic: "Software-Defined Networking",
+                explanation: "Dengan logically centralized control (SDN), administrator dapat memprogram, mengubah, dan memelihara aturan perutean global secara instan dari controller pusat tanpa menyentuh command-line router satu per satu."
+            },
+            {
+                id: 11,
+                question: "Apa kategori utama dari multiple access protocols?",
+                options: [
+                    "Unicast, multicast, dan broadcast protocols",
+                    "Channel partitioning, random access, dan taking-turns protocols",
+                    "Circuit switching, packet switching, dan hybrid switching",
+                    "Token-based, contention-based, dan polling-based protocols",
+                    "Collision detection, collision avoidance, dan hybrid protocols"
+                ],
+                answer: 1,
+                topic: "Link Layer",
+                explanation: "Kategori utama pembagian media access control (MAC) di link layer adalah: pembagian saluran (channel partitioning), akses bebas/acak (random access), dan protokol bergantian (taking-turns)."
+            },
+            {
+                id: 12,
+                question: "Contoh dari Random Access Protocols yang populer adalah...",
+                options: [
+                    "Carrier Sense Multiple Access (CSMA)",
+                    "Polling Protocol",
+                    "Token Passing Protocol",
+                    "Time Division Multiplexing (TDM)",
+                    "Circuit Switching Protocol"
+                ],
+                answer: 0,
+                topic: "Link Layer",
+                explanation: "CSMA (Carrier Sense Multiple Access) adalah contoh protokol akses acak (random access) di mana perangkat memeriksa kesibukan medium sebelum mulai mengirimkan data."
+            },
+            {
+                id: 13,
+                question: "Bagaimana Carrier Sense Multiple Access with Collision Detection (CSMA/CD) mengurangi tabrakan dalam jaringan kabel?",
+                options: [
+                    "Perangkat memantau kabel dan menghentikan pengiriman jika ada tabrakan",
+                    "Setiap perangkat mendapatkan alokasi waktu eksklusif untuk transmisi",
+                    "Perangkat mengenkripsi data sebelum meluncurkannya ke kabel tembaga",
+                    "Perangkat hanya mengirimkan data setelah meminta izin dari master node",
+                    "Perangkat mengirim data dengan kode enkripsi biner yang sangat unik"
+                ],
+                answer: 0,
+                topic: "Link Layer",
+                explanation: "CSMA/CD memantau tegangan kabel saat mentransmisi. Jika terjadi tabrakan sinyal (*collision*), pengirim segera menghentikan transmisi dan mengirim sinyal jam sebelum mencoba lagi."
+            },
+            {
+                id: 14,
+                question: "Apa kelemahan utama dari parity checking sebagai metode error detection?",
+                options: [
+                    "Memerlukan perangkat keras tambahan khusus di dalam setiap kartu jaringan",
+                    "Tidak mampu mendeteksi jika terjadi kesalahan bit dalam jumlah genap",
+                    "Membutuhkan waktu komputasi yang terlalu lama bagi prosesor utama host",
+                    "Hanya dapat bekerja di dalam media kabel tembaga dan tidak pada fiber",
+                    "Menolak pengiriman data yang memiliki ukuran paket di atas seribu byte"
+                ],
+                answer: 1,
+                topic: "Link Layer",
+                explanation: "Parity check hanya mendeteksi perubahan ganjil. Jika terjadi bit flip dalam jumlah genap (misal 2 bit berubah sekaligus), nilai paritas akan tetap sama sehingga kesalahan tidak terdeteksi."
+            },
+            {
+                id: 15,
+                question: "Di mana link layer diimplementasikan dalam perangkat jaringan?",
+                options: [
+                    "Seluruhnya berada di dalam perangkat lunak aplikasi tingkat pengguna",
+                    "Hanya diimplementasikan pada sisi sistem operasi pusat server data saja",
+                    "Sepenuhnya dijalankan oleh perangkat keras CPU tanpa bantuan kartu adapter",
+                    "Terdistribusi di antara firmware router inti dan kontroler SDN pusat",
+                    "Sebagian besar di dalam perangkat keras NIC dan sebagian kecil di software"
+                ],
+                answer: 4,
+                topic: "Link Layer",
+                explanation: "Link layer sebagian besar tertanam langsung pada chip kontroler adapter fisik (NIC) berupa perangkat keras, dan sebagian fungsionalitas logis (seperti antarmuka ke layer 3) ditangani oleh driver di sistem operasi."
+            },
+            {
+                id: 16,
+                question: "Salah satu contoh Channel Partitioning Protocols adalah...",
+                options: [
+                    "Slotted ALOHA",
+                    "ALOHA standar",
+                    "Carrier Sense Multiple Access (CSMA)",
+                    "Time Division Multiplexing (TDM)",
+                    "Polling Protocol"
+                ],
+                answer: 3,
+                topic: "Link Layer",
+                explanation: "TDM (Time Division Multiplexing) membagi media transmisi tunggal menjadi beberapa slot waktu terpisah secara sinkronus untuk menghindari tabrakan secara mutlak."
+            },
+            {
+                id: 17,
+                question: "Mengapa error correction lebih kompleks dibandingkan error detection?",
+                options: [
+                    "Karena memerlukan algoritma enkripsi kunci publik di sisi penerimanya",
+                    "Karena membutuhkan kapasitas bandwidth link keluar yang jauh lebih besar",
+                    "Karena hanya dapat dioperasikan secara penuh pada media serat optik saja",
+                    "Karena membutuhkan memori buffer yang sangat besar untuk menyimpan file",
+                    "Karena harus menentukan letak bit yang rusak dan langsung memperbaikinya"
+                ],
+                answer: 4,
+                topic: "Link Layer",
+                explanation: "Error detection hanya bertugas mengetahui 'apakah data rusak'. Sedangkan error correction (seperti FEC) harus secara matematis mencari letak pasti bit yang terbalik (*flipped*) dan membalikkan nilainya kembali."
+            },
+            {
+                id: 18,
+                question: "Bagaimana switch menangani frame jika alamat MAC tujuan tidak ada dalam switch table?",
+                options: [
+                    "Switch langsung membuang frame tersebut demi menjaga keamanan jaringan",
+                    "Switch meminta alamat IP tujuan secara dinamis menggunakan protokol DHCP",
+                    "Switch mengirimkan frame ke semua port aktif kecuali port asal frame itu",
+                    "Switch mengubah format header menjadi paket IP sebelum melanjutkan kiriman",
+                    "Switch menahan frame di dalam memori internal sampai server merespons"
+                ],
+                answer: 2,
+                topic: "Switching & VLAN",
+                explanation: "Jika alamat tujuan tidak terdaftar dalam switch table (*unknown unicast*), switch akan melakukan aksi kebanjiran (*flooding*), yaitu memancarkan frame tersebut ke semua port kecuali port masuknya."
+            },
+            {
+                id: 19,
+                question: "Apa yang dapat dilakukan untuk mengurangi switch congestion dalam jaringan lokal?",
+                options: [
+                    "Meningkatkan ukuran frame Ethernet maksimum secara manual di semua host",
+                    "Menggunakan teknologi hub jadul untuk memotong jalur transmisi broadcast",
+                    "Menerapkan VLAN untuk mengisolasi dan memotong lalu lintas data broadcast",
+                    "Menonaktifkan trunk link yang menghubungkan switch satu dengan switch lain",
+                    "Menghapus tabel alamat MAC pada switch secara periodik setiap menit sekali"
+                ],
+                answer: 2,
+                topic: "Switching & VLAN",
+                explanation: "VLAN (Virtual LAN) mengisolasi domain broadcast secara logis, sehingga lalu lintas siaran dari satu VLAN tidak akan membanjiri port VLAN lain, mengurangi penumpukan trafik."
+            },
+            {
+                id: 20,
+                question: "Bagaimana switch mencegah tabrakan data dalam jaringan Ethernet?",
+                options: [
+                    "Membatasi jumlah maksimal perangkat aktif yang boleh terhubung ke port",
+                    "Memaksa semua host untuk berkomunikasi dalam satu slot waktu sinkronus",
+                    "Menggunakan metode store-and-forward untuk mengantrekan frame di buffer",
+                    "Menggunakan mekanisme pembagian kode biner untuk menyaring sinyal tabrakan",
+                    "Mengalokasikan frekuensi kabel tembaga yang berbeda untuk setiap host"
+                ],
+                answer: 2,
+                topic: "Switching & VLAN",
+                explanation: "Switch menyangga (*buffer*) frame masuk di dalam memori portnya secara independen (store-and-forward atau cut-through) dan meneruskannya secara bergantian, mengisolasi setiap port dari tabrakan data."
+            },
+            {
+                id: 21,
+                question: "Bagaimana virtualization mempengaruhi desain data center networking?",
+                options: [
+                    "Menghilangkan kebutuhan akan alamat fisik MAC di dalam lalu lintas lokal",
+                    "Memungkinkan perpindahan mesin virtual antar server tanpa putusnya koneksi",
+                    "Mengurangi secara drastis jumlah switch fisik yang harus dioperasikan",
+                    "Memaksa semua server data center untuk menggunakan alamat IP publik murni",
+                    "Meningkatkan efisiensi pemanfaatan daya listrik dengan pendinginan cerdas"
+                ],
+                answer: 1,
+                topic: "Data Center Networking",
+                explanation: "Virtualisasi mesin (VM migration) menuntut arsitektur data center yang fleksibel (seperti overlay network VXLAN) agar mesin virtual dapat berpindah antar rak fisik dengan tetap mempertahankan IP dan MAC aslinya."
+            },
+            {
+                id: 22,
+                question: "Apa yang dimaksud dengan link virtualization dalam konteks jaringan?",
+                options: [
+                    "Penggunaan terowongan logis untuk membuat jalur virtual di atas kabel fisik",
+                    "Teknik pemisahan rentang frekuensi pada medium transmisi udara nirkabel",
+                    "Metode pengompresian paket data agar ukuran payload-nya mengecil di jalan",
+                    "Proses penerjemahan alamat MAC lokal ke alamat IP publik secara dinamis",
+                    "Teknologi saklar pintar untuk menonaktifkan jalur redundant secara otomatis"
+                ],
+                answer: 0,
+                topic: "Virtualisasi & MPLS",
+                explanation: "Link virtualization mengabstraksikan link fisik bersama agar dapat bertingkah laku seperti beberapa link logis terisolasi (seperti jalur terowongan/tunneling pada MPLS atau ATM)."
+            },
+            {
+                id: 23,
+                question: "Apa fungsi utama dari MAC address filtering dalam switch?",
+                options: [
+                    "Memblokir semua jenis lalu lintas data siaran yang melintasi switch",
+                    "Membatasi hak akses perangkat ke jaringan berdasarkan alamat fisik MAC",
+                    "Memastikan bahwa setiap host baru mendapatkan penomoran alamat IP unik",
+                    "Menerjemahkan alamat fisik MAC ke format alamat IP secara dinamis di port",
+                    "Membagi kapasitas bandwidth secara adil ke setiap port yang aktif di switch"
+                ],
+                answer: 1,
+                topic: "Switching & VLAN",
+                explanation: "MAC Filtering adalah fitur keamanan dasar Layer 2 di mana switch dikonfigurasikan hanya untuk mengizinkan frame dengan alamat MAC terdaftar saja yang boleh melewatinya."
+            },
+            {
+                id: 24,
+                question: "Apa kepanjangan dari LTE dalam jaringan 4G?",
+                options: [
+                    "Local Transmission Equipment",
+                    "Long-Term Evolution",
+                    "Large Tower Equipment",
+                    "Low Transmission Efficiency",
+                    "Limited Telecommunication Exchange"
+                ],
+                answer: 1,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "LTE adalah singkatan dari Long-Term Evolution, standar komunikasi nirkabel berkecepatan tinggi berbasis data paket untuk teknologi seluler 4G."
+            },
+            {
+                id: 25,
+                question: "Apa yang dapat menyebabkan interferensi dalam jaringan nirkabel?",
+                options: [
+                    "Penggunaan lebar pita alokasi data yang terlalu besar pada router utama",
+                    "Kegagalan sistem operasi perangkat dalam memproses enkripsi data paket",
+                    "Perangkat lain yang memancarkan sinyal radio pada frekuensi yang sama",
+                    "Keterbatasan ketersediaan jumlah alamat IP dinamis di dalam subnet lokal",
+                    "Kecepatan switching fabric yang terlalu lambat pada perangkat pemancar"
+                ],
+                answer: 2,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Interferensi nirkabel terjadi ketika ada gelombang radio dari sumber lain (seperti Wi-Fi tetangga, microwave, Bluetooth) yang memancar pada pita frekuensi yang sama, mengacaukan sinyal."
+            },
+
+            // --- STREAMING_CHUNK: Instantiating the second half of the 50 questions... ---
+            {
+                id: 26,
+                question: "Apa keuntungan utama dari penggunaan teknologi beamforming dalam WiFi 802.11?",
+                options: [
+                    "Memangkas durasi waktu autentikasi antar-perangkat nirkabel secara instan",
+                    "Menurunkan konsumsi arus daya baterai pada perangkat penerima secara drastis",
+                    "Memfokuskan arah sinyal ke perangkat target untuk menaikkan jangkauan",
+                    "Mencegah penumpukan antrean paket data pada port keluaran fisik router",
+                    "Mengubah sandi keamanan enkripsi secara otomatis pada setiap sesi pengiriman"
+                ],
+                answer: 2,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Beamforming menggunakan beberapa antena untuk merekayasa fase gelombang radio secara terarah menuju posisi fisik klien, meningkatkan kualitas sinyal dan jangkauan."
+            },
+            {
+                id: 27,
+                question: "Apa tantangan utama dalam mobility management pada jaringan seluler?",
+                options: [
+                    "Kesulitan dalam menetapkan rentang alokasi alamat IP dinamis yang permanen",
+                    "Biaya investasi awal yang sangat mahal untuk pemasangan kabel tembaga nirkabel",
+                    "Pengelolaan perpindahan link antar sel agar koneksi data tidak terputus",
+                    "Kerentanan terhadap penyadapan lalu lintas data pada jalur fiber optik darat",
+                    "Pemberian prioritas lalu lintas video streaming di atas komunikasi suara darurat"
+                ],
+                answer: 2,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Tantangan tersulit manajemen mobilitas adalah melakukan handover (perpindahan koneksi antar-menara seluler) dengan waktu tunda seminim mungkin agar percakapan/data tidak terputus."
+            },
+            {
+                id: 28,
+                question: "What is the meaning of handoff (handover) in wireless networking?",
+                options: [
+                    "Proses mengalokasikan alamat IP baru untuk setiap perangkat dalam jaringan nirkabel",
+                    "Proses pemutusan koneksi perangkat secara otomatis setelah jangka waktu tertentu",
+                    "Proses di mana perangkat berpindah dari satu base station ke base station lain",
+                    "Proses mengonversi sinyal nirkabel menjadi sinyal kabel",
+                    "Proses mengubah jaringan nirkabel menjadi jaringan kabel dalam infrastruktur perusahaan"
+                ],
+                answer: 2,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Handoff/handover mengalihkan koneksi fisik aktif perangkat bergerak dari satu menara BTS/Access Point ke menara berikutnya yang sinyalnya lebih kuat tanpa memutus koneksi aplikasi."
+            },
+            {
+                id: 29,
+                question: "Bagaimana fading dapat mempengaruhi kualitas jaringan nirkabel?",
+                options: [
+                    "Fading memicu terjadinya kerusakan fisik permanen pada antena pemancar radio",
+                    "Fading melipatgandakan kecepatan transmisi data di area terbuka secara alami",
+                    "Fading meminimalkan kebutuhan enkripsi data pada seluruh sesi komunikasi",
+                    "Fading menyingkirkan kebutuhan deteksi kesalahan data bit di tingkat link layer",
+                    "Fading menyebabkan fluktuasi kekuatan sinyal akibat dinamika lingkungan"
+                ],
+                answer: 4,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Fading adalah pelemahan kekuatan sinyal nirkabel akibat distorsi lingkungan (jarak, pantulan, atau pergerakan objek) yang membuat gelombang tiba dengan fase yang saling merusak."
+            },
+            {
+                id: 30,
+                question: "Apa kepanjangan dari IEEE dalam standar IEEE 802.11?",
+                options: [
+                    "Independent Electronic Engineering Entity",
+                    "International Electronic Engineering Experts",
+                    "International Electronics and Electricity Engineers",
+                    "Institute of Electrical and Electronics Engineers",
+                    "Internet of Electronic Engineering Elements"
+                ],
+                answer: 3,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "IEEE adalah singkatan dari Institute of Electrical and Electronics Engineers, organisasi profesional internasional yang menerbitkan berbagai standar teknologi."
+            },
+            {
+                id: 31,
+                question: "Apa yang dimaksud dengan Signal-to-Noise Ratio (SNR) dalam jaringan nirkabel?",
+                options: [
+                    "Kecepatan transmisi bit data maksimal yang dapat dilewatkan di udara bebas",
+                    "Besarnya energi daya baterai yang dikonsumsi oleh kartu adapter nirkabel",
+                    "Jarak jangkauan rambat maksimal gelombang radio dari antena pemancar pusat",
+                    "Perbandingan antara kekuatan sinyal yang diterima dengan tingkat derau sekitar",
+                    "Jumlah maksimal host nirkabel yang dapat berasosiasi ke satu Access Point"
+                ],
+                answer: 3,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "SNR mengukur seberapa kuat sinyal data yang diterima dibandingkan dengan derau gangguan lingkungan sekitar (*noise*). SNR tinggi berarti kualitas data sangat bersih."
+            },
+            {
+                id: 32,
+                question: "Manakah dari berikut ini yang merupakan contoh hash function yang umum digunakan?",
+                options: [
+                    "RSA",
+                    "DES",
+                    "SHA-256",
+                    "HTTPS",
+                    "AES"
+                ],
+                answer: 2,
+                topic: "Keamanan Jaringan",
+                explanation: "SHA-256 (Secure Hash Algorithm) adalah fungsi hash kriptografi standar yang mengompresi data menjadi nilai sidik jari unik sepanjang 256-bit."
+            },
+            {
+                id: 33,
+                question: "Apa tujuan utama dari two-factor authentication (2FA)?",
+                options: [
+                    "Menggabungkan dua jenis langganan paket data internet untuk meningkatkan kecepatan",
+                    "Mengubah sandi akun secara otomatis setiap kali perangkat berpindah jaringan lokal",
+                    "Membatalkan seluruh request masuk dari alamat IP asing yang tidak terdaftar di sistem",
+                    "Mempercepat waktu pemrosesan pemuatan dashboard profil pengguna di sisi server",
+                    "Meningkatkan keamanan dengan mewajibkan dua metode validasi identitas terpisah"
+                ],
+                answer: 4,
+                topic: "Keamanan Jaringan",
+                explanation: "2FA memperkuat pertahanan login dengan mengombinasikan dua faktor berbeda (misal: sandi yang Anda ketahui dan token kode OTP dari ponsel yang Anda miliki)."
+            },
+            {
+                id: 34,
+                question: "Apa tujuan utama dari diterapkannya keamanan jaringan?",
+                options: [
+                    "Menghemat biaya pemeliharaan router dan memperpanjang umur hardware jaringan",
+                    "Mendelegasikan tugas routing dinamis dari control plane langsung ke data plane",
+                    "Mengurangi porsi overhead bit header di dalam setiap paket data yang lewat",
+                    "Meminimalkan penggunaan bandwidth internal server pada saat melayani pengguna",
+                    "Memastikan kelancaran komunikasi data terlindungi dari penyadapan dan ancaman"
+                ],
+                answer: 4,
+                topic: "Keamanan Jaringan",
+                explanation: "Keamanan jaringan bertujuan menjaga tiga pilar informasi: Kerahasiaan (Confidentiality), Integritas (Integrity), dan Ketersediaan (Availability) dari ancaman siber."
+            },
+            {
+                id: 35,
+                question: "Apa yang dimaksud dengan replay attack dalam konteks keamanan?",
+                options: [
+                    "Serangan dengan menangkap paket data lalu mengirimkannya kembali di lain waktu",
+                    "Serangan menghapus paksa seluruh database yang tersimpan di dalam server pusat",
+                    "Serangan memodifikasi header alamat IP tujuan di tengah rute pengiriman data",
+                    "Serangan merusak fisik kabel serat optik bawah laut untuk melumpuhkan internet",
+                    "Serangan menggandakan paket secara acak demi mempercepat laju koneksi data"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "Replay attack menangkap sesi paket sah (seperti paket login) lalu mengirimkannya kembali nanti ke server untuk membobol autentikasi seolah-olah dia adalah user yang sah."
+            },
+            {
+                id: 36,
+                question: "Apa tujuan utama dari digunakannya sebuah 'nonce' dalam protokol keamanan?",
+                options: [
+                    "Mempercepat proses enkripsi paket biner pada lapisan transportasi jaringan",
+                    "Mengecilkan ukuran berkas payload agar konsumsi bandwidth menjadi lebih hemat",
+                    "Mengamankan database penyimpanan kata sandi dengan penambahan garam khusus",
+                    "Menerjemahkan alamat IP privat menjadi alamat IP publik secara dinamis di NAT",
+                    "Mencegah terjadinya penyusupan berbasis replay attack menggunakan angka sekali pakai"
+                ],
+                answer: 4,
+                topic: "Keamanan Jaringan",
+                explanation: "Nonce (*number used once*) adalah nilai angka acak unik sekali pakai yang disertakan dalam jabat tangan keamanan agar paket lama yang dikirim ulang (replay) dapat dideteksi dan ditolak."
+            },
+            {
+                id: 37,
+                question: "Dalam skenario public-key cryptography, kunci manakah yang digunakan untuk mengenkripsi pesan rahasia?",
+                options: [
+                    "Kunci publik pengirim asli pesan",
+                    "Kunci privat pengirim asli pesan",
+                    "Kunci publik dari pihak penerima pesan",
+                    "Kunci privat dari pihak penerima pesan",
+                    "Kunci acak simetris bawaan sistem"
+                ],
+                answer: 2,
+                topic: "Keamanan Jaringan",
+                explanation: "Dalam kriptografi kunci publik (asimetris), siapapun yang ingin mengirim data rahasia ke Bob wajib mengunci data tersebut menggunakan Kunci Publik milik Bob (penerima)."
+            },
+            {
+                id: 38,
+                question: "Apa fungsi utama dari hash function dalam keamanan jaringan?",
+                options: [
+                    "Menghubungkan database pengguna ke server autentikasi lokal secara andal",
+                    "Menghasilkan nilai unik dari suatu pesan untuk memvalidasi integritasnya",
+                    "Memelihara status koneksi TCP agar tetap aktif di tengah kemacetan jaringan",
+                    "Membagi porsi kapasitas bandwidth secara adil kepada semua pengguna aktif",
+                    "Mengunci seluruh isi pesan dengan algoritma kriptografi kunci simetris"
+                ],
+                answer: 1,
+                topic: "Keamanan Jaringan",
+                explanation: "Fungsi hash menghasilkan nilai sidik jari digital (*checksum/digest*). Jika ada perubahan satu karakter saja pada dokumen, nilai hash-nya akan berubah total (mendeteksi tampering)."
+            },
+            {
+                id: 39,
+                question: "Apa teknik yang digunakan untuk memastikan keaslian pengirim dan pesan tidak diubah selama perjalanan?",
+                options: [
+                    "Penyaringan alamat fisik via MAC Filtering",
+                    "Penerapan enkripsi kunci simetris AES-256",
+                    "Penyematan tanda tangan digital (Digital Signature)",
+                    "Pemasangan sirkuit penyaring paket via Firewall",
+                    "Pemeriksaan nilai checksum di tingkat transport layer"
+                ],
+                answer: 2,
+                topic: "Keamanan Jaringan",
+                explanation: "Digital Signature menggunakan enkripsi hash dengan kunci privat pengirim untuk menjamin keaslian identitas pengirim (authentication) sekaligus keutuhan pesan (integrity)."
+            },
+            {
+                id: 40,
+                question: "Apa perbedaan antara virus dan worm dalam konteks keamanan jaringan?",
+                options: [
+                    "Virus tidak dapat menyebarkan diri melalui media jaringan komputer lokal",
+                    "Worm dikonfigurasikan khusus untuk melumpuhkan kinerja perangkat mobile saja",
+                    "Virus dinilai jauh lebih merusak data internal sistem dibandingkan dengan worm",
+                    "Worm mampu bereplikasi mandiri, sedangkan virus butuh interaksi eksekusi pengguna",
+                    "Worm tidak memiliki daya rusak terhadap kestabilan sistem operasi komputer"
+                ],
+                answer: 3,
+                topic: "Keamanan Jaringan",
+                explanation: "Worm adalah program mandiri yang dapat otomatis menyebar ke komputer lain melalui jaringan. Virus membutuhkan inang (host file) dan eksekusi aktif dari pengguna (seperti mengklik file eksekusi)."
+            },
+
+            // --- 10 SOAL TAMBAHAN BARU SESUAI KURIKULUM (41 - 50) ---
+            {
+                id: 41,
+                question: "Apa tujuan utama penggunaan mekanisme TCP Keep-Alive dalam sesi koneksi?",
+                options: [
+                    "Mempercepat waktu jabat tangan pada inisiasi awal koneksi baru",
+                    "Mengecilkan overhead bit pada header lapisan transpor secara dinamis",
+                    "Memastikan koneksi tetap aktif dengan mengirim sinyal detak jantung berkala",
+                    "Mengontrol aliran laju data agar buffer penerima tidak meluap banjir",
+                    "Mengubah alokasi port dinamis menjadi port statis di sisi server"
+                ],
+                answer: 2,
+                topic: "Lapisan Transpor",
+                explanation: "TCP Keep-Alive mengirimkan segmen detak jantung (*probe*) kecil secara berkala ketika koneksi menganggur untuk mendeteksi apakah host seberang masih hidup atau sudah mati."
+            },
+            {
+                id: 42,
+                question: "Bagaimana prinsip kerja algoritma Nagle dalam optimasi TCP?",
+                options: [
+                    "Membatasi pengiriman paket kecil dengan mengantrekannya hingga buffer MSS terpenuhi",
+                    "Menurunkan laju pengiriman secara drastis saat mendeteksi packet loss",
+                    "Mengalokasikan bandwidth eksklusif untuk trafik data real-time saja",
+                    "Mengenkripsi isi payload secara acak sebelum didorong ke kartu NIC",
+                    "Menonaktifkan pengiriman konfirmasi ACK untuk menghemat saluran balik"
+                ],
+                answer: 0,
+                topic: "Lapisan Transpor",
+                explanation: "Algoritma Nagle menghemat penggunaan bandwidth pada trafik interaktif (seperti Telnet) dengan menahan paket kecil di buffer dan baru mengirimkannya setelah data yang dikirim sebelumnya menerima ACK atau ukuran data mencapai batas MSS."
+            },
+            {
+                id: 43,
+                question: "Apa yang dimaksud dengan SYN Flood Attack dalam kerawanan TCP?",
+                options: [
+                    "Membanjiri server dengan paket ACK kosong agar database crash",
+                    "Mengirimkan paket FIN terus-menerus untuk menutup koneksi orang lain",
+                    "Membanjiri server dengan paket SYN tanpa membalas SYN-ACK agar antrean koneksi penuh",
+                    "Mencuri nomor urut sequence awal klien menggunakan teknik spoofing",
+                    "Mengubah alokasi port default server web secara dinamis tanpa izin"
+                ],
+                answer: 2,
+                topic: "Keamanan Jaringan",
+                explanation: "Serangan ini memanfaatkan kelemahan jabat tangan TCP: penyerang mengirimkan jutaan paket SYN palsu. Server membalas SYN-ACK dan mengalokasikan memori menunggu balasan ACK yang tidak pernah datang (half-open connection), melumpuhkan server."
+            },
+            {
+                id: 44,
+                question: "Apa peran utama dari bidang 'Options' pada header TCP?",
+                options: [
+                    "Menyimpan data password pengguna dalam bentuk biner terenkripsi",
+                    "Menampung parameter negosiasi tambahan seperti MSS dan Window Scale",
+                    "Menentukan rute alternatif yang harus dilalui paket di internet",
+                    "Menghitung jumlah total segmen yang berhasil dikirimkan sebelumnya",
+                    "Mengubah status koneksi TCP menjadi UDP secara dinamis saat macet"
+                ],
+                answer: 1,
+                topic: "Lapisan Transpor",
+                explanation: "Bidang Options pada header TCP bersifat dinamis, digunakan untuk menegosiasikan fitur tingkat lanjut saat handshake, seperti batas Maximum Segment Size (MSS) dan faktor pengali Window Scale."
+            },
+            {
+                id: 45,
+                question: "Mengapa protokol UDP sangat rentan terhadap IP Spoofing dibandingkan TCP?",
+                options: [
+                    "Karena UDP tidak memiliki header checksum untuk verifikasi keutuhan data",
+                    "Karena UDP tidak membutuhkan jabat tangan koneksi untuk memvalidasi alamat asal",
+                    "Karena UDP hanya dapat digunakan di dalam lingkungan jaringan lokal (LAN)",
+                    "Karena ukuran header UDP terlalu kecil untuk menampung alamat IP asal",
+                    "Karena semua paket data UDP dikirim secara broadcast ke seluruh port"
+                ],
+                answer: 1,
+                topic: "Lapisan Transpor",
+                explanation: "Karena UDP bersifat connectionless, pengirim cukup menembakkan paket tanpa handshake. Hal ini mempermudah peretas memalsukan alamat IP asal (*IP Spoofing*) karena server tidak memiliki mekanisme verifikasi validasi koneksi awal."
+            },
+            {
+                id: 46,
+                question: "Apa itu Path MTU Discovery (PMTUD) dan bagaimana ia bekerja?",
+                options: [
+                    "Mekanisme untuk mengukur kecepatan bandwidth terbesar sepanjang jalur rute",
+                    "Mekanisme mencari MTU terkecil sepanjang rute menggunakan bit DF pada IPv4",
+                    "Proses enkripsi dinamis paket data agar muat dalam media optik",
+                    "Teknik mempercepat pemrosesan data dengan memotong header IP di router",
+                    "Protokol otomatisasi alokasi subnet mask dinamis di tingkat core"
+                ],
+                answer: 1,
+                topic: "Lapisan Jaringan",
+                explanation: "PMTUD mengirimkan paket dengan bit Don't Fragment (DF) aktif. Jika ada router dengan MTU lebih kecil, router membuangnya dan membalas dengan pesan ICMP. Pengirim pun tahu ukuran paket maksimal yang aman dikirim tanpa fragmentasi."
+            },
+            {
+                id: 47,
+                question: "Bagaimana router menangani paket jika bidang TTL bernilai 0 saat diterima?",
+                options: [
+                    "Router langsung meneruskan paket ke router berikutnya dengan prioritas tertinggi",
+                    "Router mengubah alamat IP asal paket sebelum membuangnya ke tempat sampah",
+                    "Router membuang paket tersebut dan mengirim pesan ICMP 'Time Exceeded' ke pengirim",
+                    "Router menyimpan paket tersebut di dalam memori permanen untuk diaudit",
+                    "Router mengirimkan sinyal ke pengirim untuk menggandakan laju bandwidth"
+                ],
+                answer: 2,
+                topic: "Lapisan Jaringan",
+                explanation: "Jika TTL mencapai 0, router wajib membuang datagram tersebut demi mencegah looping tak terbatas di internet, lalu mengirim laporan kesalahan ICMP Type 11 Code 0 (Time Exceeded) kembali ke host pengirim."
+            },
+            {
+                id: 48,
+                question: "Apa perbedaan utama antara link-state database (LSDB) dan forwarding table?",
+                options: [
+                    "LSDB disimpan di RAM, sedangkan forwarding table disimpan di flash memory",
+                    "LSDB berisi peta topologi jaringan global utuh, sedangkan forwarding table adalah peta aksi lokal",
+                    "LSDB hanya digunakan di jaringan IPv6, sedangkan forwarding table hanya di IPv4",
+                    "LSDB dihitung secara manual oleh admin, sedangkan forwarding table dinamis",
+                    "Tidak ada perbedaan fungsi karena keduanya menunjuk ke sirkuit yang sama"
+                ],
+                answer: 1,
+                topic: "Lapisan Jaringan",
+                explanation: "LSDB adalah database topologi utuh yang dimiliki semua router Link-State. Sedangkan forwarding table adalah hasil penyederhanaan dari LSDB setelah kalkulasi algoritma rute selesai, berisi instruksi port keluar lokal."
+            },
+            {
+                id: 49,
+                question: "Apa peran utama dari 'Ternary Content Addressable Memory' (TCAM) di router?",
+                options: [
+                    "Menyimpan cadangan sistem operasi router agar tahan terhadap kegagalan",
+                    "Melakukan lookup forwarding table berkecepatan tinggi dalam satu clock cycle",
+                    "Mengenkripsi lalu lintas data yang lewat sebelum masuk ke link keluar fisik",
+                    "Menghitung kalkulasi matematis rute Dijkstra di tingkat kontrol processor",
+                    "Membagi kapasitas bandwidth secara adil ke setiap interface port masuk"
+                ],
+                answer: 1,
+                topic: "Lapisan Jaringan",
+                explanation: "TCAM adalah memori khusus berkinerja tinggi yang memungkinkan router modern melakukan pencocokan alamat IP (*longest prefix match*) secara instan dalam satu siklus clock tanpa peduli berapa ratus ribu entri tabel yang ada."
+            },
+            {
+                id: 50,
+                question: "Apa yang terjadi pada paket IPv4 jika opsi 'Don't Fragment' (DF) aktif dan paket melebihi MTU?",
+                options: [
+                    "Router akan mengabaikan opsi tersebut dan tetap memotong paket",
+                    "Router langsung membuang paket dan mengirim pesan ICMP 'Fragmentation Needed'",
+                    "Router akan menyimpan paket di buffer sampai kapasitas link keluar kosong",
+                    "Router mengirimkan paket secara lambat melalui jalur kabel tembaga",
+                    "Router mengubah header paket menjadi format IPv6 untuk memperbesar MTU"
+                ],
+                answer: 1,
+                topic: "Lapisan Jaringan",
+                explanation: "Jika bit DF diatur ke 1 (Don't Fragment), router dilarang keras memotong paket tersebut. Jika ukuran paket melebihi MTU keluar, router akan membuang paket dan mengirim balik laporan kesalahan ICMP Type 3 Code 4 (Fragmentation Needed)."
+            }
+        ];
+
+        // STATE VARIABEL INTERNAL (IN-MEMORY STATE)
+        let activeQuestions = []; // Pool soal aktif pada sesi/kuis ini
+        let currentQuestionIndex = 0; // Index soal yang sedang aktif
+        let userAnswers = {}; // Menyimpan jawaban user { questionId: chosenIndex }
+        let flaggedQuestions = new Set(); // Menyimpan ID soal yang ditandai user
+        let quizHistory = []; // Riwayat kuis yang diselesaikan
+        let isDarkMode = false;
+        let isSoundOn = true;
+        
+        // Timer settings
+        let timerInterval = null;
+        let originalTimeLimit = 30; // Limit per soal (0 jika dinonaktifkan)
+        let secondsRemaining = 30;
+
+        // ONLOAD INITIALIZATION
+        window.onload = function() {
+            initAppTheme();
+            initHomeDashboard();
+            preloadAudio();
+        };
+
+        // SETUP THEME BASED ON SYSTEM OR PREFERENCE
+        function initAppTheme() {
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                isDarkMode = true;
+            } else {
+                document.documentElement.classList.remove('dark');
+                isDarkMode = false;
+            }
+            updateSoundIcon();
+        }
+
+        function toggleDarkMode() {
+            if (isDarkMode) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                isDarkMode = false;
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                isDarkMode = true;
+            }
+            playSound('click');
+        }
+
+        // PRELOAD / GENERATE CHEMICAL SOUNDS (WEB AUDIO API)
+        let audioCtx = null;
+        function preloadAudio() {
+            // Audio context is created lazily on user interaction due to browser policies
+        }
+
+        function toggleSound() {
+            isSoundOn = !isSoundOn;
+            updateSoundIcon();
+            if (isSoundOn) {
+                playSound('click');
+            }
+        }
+
+        function updateSoundIcon() {
+            const soundOn = document.getElementById('svgSoundOn');
+            const soundOff = document.getElementById('svgSoundOff');
+            if (isSoundOn) {
+                soundOn.classList.remove('hidden');
+                soundOff.classList.add('hidden');
+            } else {
+                soundOn.classList.add('hidden');
+                soundOff.classList.remove('hidden');
+            }
+        }
+
+        function playSound(type) {
+            if (!isSoundOn) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // G5
+                    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'incorrect') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+                    osc.frequency.setValueAtTime(147, audioCtx.currentTime + 0.12); // D3
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.45);
+                } else if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(580, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.08);
+                }
+            } catch (e) {
+                console.log("Audio API failed or blocked: ", e);
+            }
+        }
+
+        // SHOW SYSTEM TOAST
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toastNotification');
+            const msgSpan = document.getElementById('toastMessage');
+            const iconSpan = document.getElementById('toastIcon');
+            
+            msgSpan.innerText = message;
+            
+            if (type === 'success') {
+                iconSpan.innerHTML = '🟢';
+            } else if (type === 'warning') {
+                iconSpan.innerHTML = '⚠️';
+            } else {
+                iconSpan.innerHTML = 'ℹ️';
+            }
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10');
+                toast.classList.add('translate-y-0');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-10');
+                toast.classList.remove('translate-y-0');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 2500);
+        }
+
+        // MENU / DASHBOARD MANAGEMENT
+        function initHomeDashboard() {
+            document.getElementById('screenDashboard').classList.remove('hidden');
+            document.getElementById('screenQuiz').classList.add('hidden');
+            document.getElementById('screenResults').classList.add('hidden');
+            updateDashboardStats();
+        }
+
+        function updateDashboardStats() {
+            if (quizHistory.length === 0) {
+                document.getElementById('statAccuracy').innerText = "Belum Ada";
+            } else {
+                const totalAcc = quizHistory.reduce((sum, h) => sum + h.accuracy, 0);
+                const avgAcc = Math.round(totalAcc / quizHistory.length);
+                document.getElementById('statAccuracy').innerText = `${avgAcc}%`;
+            }
+            
+            document.getElementById('statCompleted').innerText = `${quizHistory.length} Sesi`;
+            document.getElementById('statFlaggedCount').innerText = `${flaggedQuestions.size} Soal`;
+            const flaggedBox = document.getElementById('divFlaggedContainer');
+            if (flaggedQuestions.size > 0) {
+                flaggedBox.classList.remove('hidden');
+            } else {
+                flaggedBox.classList.add('hidden');
+            }
+
+            checkSessionStatuses();
+        }
+
+        function checkSessionStatuses() {
+            for (let i = 1; i <= 2; i++) {
+                const badge = document.getElementById(`session${i}-badge`);
+                if (!badge) continue;
+                const isDone = quizHistory.some(h => h.sessionCode === `Sesi ${i}`);
+                if (isDone) {
+                    const filtered = quizHistory.filter(h => h.sessionCode === `Sesi ${i}`);
+                    const maxScore = Math.max(...filtered.map(f => f.accuracy));
+                    badge.innerHTML = `<span class="text-emerald-500 font-bold">Lulus (${maxScore}%)</span>`;
+                } else {
+                    badge.innerHTML = `<span class="text-slate-400">Belum Selesai</span>`;
+                }
+            }
+        }
+
+        function startSession(sessionNum) {
+            playSound('click');
+            let start = (sessionNum - 1) * 25;
+            let end = sessionNum * 25;
+            let name = `Sesi ${sessionNum}`;
+            
+            activeQuestions = MASTER_QUESTIONS.slice(start, end);
+            originalTimeLimit = parseInt(document.getElementById('selectTimerMode').value) || 30;
+            
+            initiateQuizGameplay(name);
+        }
+
+        function startSetupCustomQuiz() {
+            playSound('click');
+            const count = parseInt(document.getElementById('selectCustomCount').value);
+            const timeLimit = parseInt(document.getElementById('selectTimerMode').value);
+            
+            startCustomQuiz(count, true, timeLimit);
+        }
+
+        function startCustomQuiz(count, randomize = true, timerSetting = 30) {
+            let pool = [...MASTER_QUESTIONS];
+            if (randomize) {
+                for (let i = pool.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [pool[i], pool[j]] = [pool[j], pool[i]];
+                }
+            }
+            activeQuestions = pool.slice(0, Math.min(count, pool.length));
+            originalTimeLimit = timerSetting;
+            
+            const titleName = randomize ? `Acak ${count} Soal` : `Semua 50 Soal`;
+            initiateQuizGameplay(titleName);
+        }
+
+        function startFlaggedQuiz() {
+            if (flaggedQuestions.size === 0) {
+                showToast("Tidak ada soal yang ditandai!", "warning");
+                return;
+            }
+            playSound('click');
+            activeQuestions = MASTER_QUESTIONS.filter(q => flaggedQuestions.has(q.id));
+            originalTimeLimit = parseInt(document.getElementById('selectTimerMode').value) || 30;
+            
+            initiateQuizGameplay("Kuis Flagged");
+        }
+
+        function initiateQuizGameplay(quizTitle) {
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            
+            document.getElementById('txtQuizSource').innerText = quizTitle;
+            document.getElementById('screenDashboard').classList.add('hidden');
+            document.getElementById('screenResults').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+            
+            loadCurrentQuestion();
+        }
+
+        function loadCurrentQuestion() {
+            if (activeQuestions.length === 0) return;
+            
+            const q = activeQuestions[currentQuestionIndex];
+            
+            const topicLbl = document.getElementById('lblQuestionTopic');
+            topicLbl.innerText = q.topic || "Jaringan Komputer";
+            
+            document.getElementById('txtQuestionProgress').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${activeQuestions.length}`;
+            const pct = Math.round(((currentQuestionIndex + 1) / activeQuestions.length) * 100);
+            document.getElementById('barQuizProgress').style.width = `${pct}%`;
+            
+            document.getElementById('txtQuestionText').innerText = q.question;
+            
+            const container = document.getElementById('divOptionsContainer');
+            container.innerHTML = "";
+            
+            const answeredIndex = userAnswers[q.id];
+            
+            q.options.forEach((opt, idx) => {
+                const charCode = String.fromCharCode(97 + idx);
+                const btn = document.createElement('button');
+                btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/50 transition duration-150 text-left text-sm md:text-base group font-medium";
+                
+                let tagClass = "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300";
+                
+                if (answeredIndex !== undefined) {
+                    btn.disabled = true;
+                    
+                    if (idx === q.answer) {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-left text-sm md:text-base font-bold";
+                        tagClass = "bg-emerald-500 text-white";
+                    } else if (idx === answeredIndex) {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-brand-danger bg-rose-50 dark:bg-rose-950/20 text-rose-800 dark:text-rose-300 text-left text-sm md:text-base font-semibold";
+                        tagClass = "bg-rose-500 text-white";
+                    } else {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-850 opacity-40 text-left text-sm md:text-base";
+                    }
+                } else {
+                    btn.setAttribute('onclick', `chooseOption(${idx})`);
+                }
+                
+                btn.innerHTML = `
+                    <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg ${tagClass} text-xs font-bold uppercase transition">
+                        ${charCode}
+                    </span>
+                    <span class="flex-grow">${opt}</span>
+                `;
+                
+                container.appendChild(btn);
+            });
+            
+            const explainBox = document.getElementById('boxExplanation');
+            if (answeredIndex !== undefined) {
+                explainBox.classList.remove('hidden');
+                document.getElementById('txtExplanationText').innerText = q.explanation || "Tidak ada rincian penjelasan tambahan.";
+            } else {
+                explainBox.classList.add('hidden');
+            }
+            
+            const nextBtnLabel = document.getElementById('txtBtnNextLabel');
+            if (currentQuestionIndex === activeQuestions.length - 1) {
+                nextBtnLabel.innerText = "Selesaikan";
+            } else {
+                nextBtnLabel.innerText = "Lanjut";
+            }
+            
+            document.getElementById('btnPrev').disabled = (currentQuestionIndex === 0);
+            
+            updateFlagIconOnQuestion(q.id);
+            resetAndStartTimer(answeredIndex !== undefined);
+        }
+
+        function chooseOption(chosenIdx) {
+            const q = activeQuestions[currentQuestionIndex];
+            userAnswers[q.id] = chosenIdx;
+            
+            stopTimer();
+            
+            if (chosenIdx === q.answer) {
+                playSound('correct');
+            } else {
+                playSound('incorrect');
+            }
+            
+            loadCurrentQuestion();
+        }
+
+        function resetAndStartTimer(alreadyAnswered) {
+            stopTimer();
+            const timerBox = document.getElementById('boxTimer');
+            
+            if (originalTimeLimit <= 0 || alreadyAnswered) {
+                timerBox.classList.add('hidden');
+                return;
+            }
+            
+            timerBox.classList.remove('hidden');
+            secondsRemaining = originalTimeLimit;
+            document.getElementById('lblCountdown').innerText = `${secondsRemaining}s`;
+            
+            timerInterval = setInterval(() => {
+                secondsRemaining--;
+                document.getElementById('lblCountdown').innerText = `${secondsRemaining}s`;
+                
+                if (secondsRemaining <= 5) {
+                    timerBox.className = "flex items-center space-x-1.5 px-3 py-1 bg-red-100 dark:bg-red-950 text-red-600 dark:text-red-400 font-mono text-sm font-bold rounded-full animate-pulse";
+                } else {
+                    timerBox.className = "flex items-center space-x-1.5 px-3 py-1 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-mono text-sm font-bold rounded-full";
+                }
+                
+                if (secondsRemaining <= 0) {
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function handleTimeOut() {
+            stopTimer();
+            playSound('incorrect');
+            showToast("Waktu habis untuk soal ini!", "warning");
+            
+            const q = activeQuestions[currentQuestionIndex];
+            userAnswers[q.id] = -1;
+            
+            loadCurrentQuestion();
+        }
+
+        function toggleFlagOnCurrentQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            if (flaggedQuestions.has(q.id)) {
+                flaggedQuestions.delete(q.id);
+                showToast("Tanda dihapus dari soal ini.", "info");
+            } else {
+                flaggedQuestions.add(q.id);
+                showToast("Soal berhasil ditandai!", "success");
+            }
+            playSound('click');
+            updateFlagIconOnQuestion(q.id);
+        }
+
+        function updateFlagIconOnQuestion(questionId) {
+            const path = document.getElementById('pathFlag');
+            const btn = document.getElementById('btnFlagActive');
+            if (flaggedQuestions.has(questionId)) {
+                path.setAttribute('fill', 'currentColor');
+                btn.className = "p-2 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/50 rounded-lg transition-colors text-amber-500 focus:outline-none";
+            } else {
+                path.removeAttribute('fill');
+                btn.className = "p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors text-slate-400 hover:text-amber-500 focus:outline-none";
+            }
+        }
+
+        function navPrevQuestion() {
+            if (currentQuestionIndex > 0) {
+                playSound('click');
+                currentQuestionIndex--;
+                loadCurrentQuestion();
+            }
+        }
+
+        function navNextQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            
+            if (userAnswers[q.id] === undefined) {
+                userAnswers[q.id] = -1;
+            }
+            
+            if (currentQuestionIndex < activeQuestions.length - 1) {
+                playSound('click');
+                currentQuestionIndex++;
+                loadCurrentQuestion();
+            } else {
+                completeQuizAndProcessResults();
+            }
+        }
+
+        function confirmExitQuiz() {
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.remove('hidden');
+        }
+
+        function closeExitModal() {
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.add('hidden');
+        }
+
+        function confirmExitToDashboard() {
+            stopTimer();
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.add('hidden');
+            initHomeDashboard();
+        }
+
+        function completeQuizAndProcessResults() {
+            stopTimer();
+            playSound('correct');
+            
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let totalAnswered = activeQuestions.length;
+            
+            activeQuestions.forEach(q => {
+                if (userAnswers[q.id] === q.answer) {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+            });
+            
+            const accuracyPct = Math.round((correctCount / totalAnswered) * 100);
+            
+            const sessionName = document.getElementById('txtQuizSource').innerText;
+            quizHistory.push({
+                sessionCode: sessionName,
+                correct: correctCount,
+                total: totalAnswered,
+                accuracy: accuracyPct,
+                timestamp: new Date()
+            });
+            
+            document.getElementById('lblResultPercentage').innerText = `${accuracyPct}%`;
+            document.getElementById('lblResCorrect').innerText = correctCount;
+            document.getElementById('lblResIncorrect').innerText = incorrectCount;
+            document.getElementById('lblResPoints').innerText = `${correctCount} / ${totalAnswered}`;
+            document.getElementById('lblResTime').innerText = "Selesai";
+            
+            const banner = document.getElementById('divLevelBanner');
+            let quote = "";
+            let bannerText = "";
+            
+            if (accuracyPct >= 95) {
+                bannerText = "🏆 Gelar: Dewa Jaringan (Suhu Cisco & Mikrotik)";
+                banner.className = "bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Luar biasa hebat! Penguasaan materi Anda di atas rata-rata. Anda sangat siap menghadapi ujian jaringan komputer!";
+            } else if (accuracyPct >= 80) {
+                bannerText = "🥇 Gelar: Master Administrator Jaringan";
+                banner.className = "bg-gradient-to-r from-indigo-500 to-blue-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Kerja bagus! Sedikit penyempurnaan lagi dan Anda akan mencapai nilai sempurna. Jaga performa belajar Anda!";
+            } else if (accuracyPct >= 60) {
+                bannerText = "🥈 Gelar: Teknisi Jaringan Menengah";
+                banner.className = "bg-gradient-to-r from-amber-500 to-yellow-500 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Cukup baik. Namun, harap tinjau kembali jawaban yang salah untuk memperkuat teori tumpukan protokol.";
+            } else if (accuracyPct >= 40) {
+                bannerText = "🥉 Gelar: Junior Support (Suka Salah Colok LAN)";
+                banner.className = "bg-gradient-to-r from-orange-500 to-amber-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Jangan patah semangat! Pelajari kembali penjelasan pada setiap butir soal untuk memperbaiki skor berikutnya.";
+            } else {
+                bannerText = "⚠️ Gelar: User Biasa (Butuh Baca Modul Lagi!)";
+                banner.className = "bg-gradient-to-r from-rose-500 to-red-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Ayo belajar lagi! Jaringan komputer adalah materi komprehensif. Cobalah mengerjakan kuis per Sesi yang lebih pendek.";
+            }
+            
+            banner.innerText = bannerText;
+            document.getElementById('txtResultMotivationalQuote').innerText = quote;
+            
+            renderReviewQuestionsList('all');
+            
+            document.getElementById('screenQuiz').classList.add('hidden');
+            document.getElementById('screenResults').classList.remove('hidden');
+        }
+
+        let currentReviewFilter = 'all';
+        function filterReview(filterMode) {
+            playSound('click');
+            currentReviewFilter = filterMode;
+            
+            const btnAll = document.getElementById('btnFilterAll');
+            const btnWrong = document.getElementById('btnFilterWrong');
+            const btnFlag = document.getElementById('btnFilterFlagged');
+            
+            btnAll.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            btnWrong.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            btnFlag.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            
+            if (filterMode === 'all') btnAll.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            if (filterMode === 'wrong') btnWrong.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            if (filterMode === 'flagged') btnFlag.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            
+            renderReviewQuestionsList(filterMode);
+        }
+
+        function renderReviewQuestionsList(filter) {
+            const listContainer = document.getElementById('divReviewList');
+            listContainer.innerHTML = "";
+            
+            activeQuestions.forEach((q, idx) => {
+                const isCorrect = (userAnswers[q.id] === q.answer);
+                const isFlagged = flaggedQuestions.has(q.id);
+                
+                if (filter === 'wrong' && isCorrect) return;
+                if (filter === 'flagged' && !isFlagged) return;
+                
+                const div = document.createElement('div');
+                div.className = "p-5 space-y-3 bg-white dark:bg-slate-800 transition-colors";
+                
+                let statusBadge = isCorrect 
+                    ? `<span class="bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-2 py-0.5 rounded-full">Benar</span>` 
+                    : `<span class="bg-rose-100 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-bold px-2 py-0.5 rounded-full">Salah / Terlewat</span>`;
+                
+                const userChoiceLetter = userAnswers[q.id] >= 0 ? String.fromCharCode(97 + userAnswers[q.id]).toUpperCase() : "Kosong";
+                const correctChoiceLetter = String.fromCharCode(97 + q.answer).toUpperCase();
+                
+                div.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-400 font-mono">Soal #${q.id}</span>
+                        <div class="flex space-x-2 items-center">
+                            ${statusBadge}
+                            ${isFlagged ? `<span class="text-amber-500">🚩</span>` : ''}
+                        </div>
+                    </div>
+                    <p class="font-bold text-sm text-slate-800 dark:text-white leading-relaxed">${q.question}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div class="p-2 bg-slate-50 dark:bg-slate-700/40 rounded border dark:border-slate-750">
+                            <span class="text-slate-400 block font-semibold uppercase tracking-wider text-[10px]">Jawaban Anda</span>
+                            <span class="${isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500'} font-bold">(${userChoiceLetter}) ${userAnswers[q.id] >= 0 ? q.options[userAnswers[q.id]] : 'Terlewat'}</span>
+                        </div>
+                        <div class="p-2 bg-slate-50 dark:bg-slate-700/40 rounded border dark:border-slate-750">
+                            <span class="text-slate-400 block font-semibold uppercase tracking-wider text-[10px]">Kunci Jawaban</span>
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold">(${correctChoiceLetter}) ${q.options[q.answer]}</span>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50/50 dark:bg-slate-900/40 p-3 rounded-lg text-xs leading-relaxed border border-indigo-100/30">
+                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Rincian Penjelasan:</span>
+                        <span class="text-slate-600 dark:text-slate-300 font-medium">${q.explanation}</span>
+                    </div>
+                `;
+                
+                listContainer.appendChild(div);
+            });
+            
+            if (listContainer.children.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="p-8 text-center text-slate-400 text-sm">
+                        Tidak ada pertanyaan yang sesuai dengan filter ini.
+                    </div>
+                `;
+            }
+        }
+
+        function restartActiveQuizSession() {
+            playSound('click');
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            document.getElementById('screenResults').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+            loadCurrentQuestion();
+        }
+    </script>
+</body>
+</html>
