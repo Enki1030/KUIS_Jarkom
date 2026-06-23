@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetQuiz Pro: Sesi 25 Soal Baru - Edisi Khusus</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#4f46e5',
+                            dark: '#6366f1',
+                            success: '#10b981',
+                            danger: '#ef4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-bar-transition {
+            transition: width 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 flex flex-col">
+
+    <!-- HEADER -->
+    <header class="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50 transition-colors">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg text-indigo-600 dark:text-indigo-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">NetQuiz Pro</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Kumpulan 25 Soal Baru Hasil Analisis</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <!-- Toggle Sound -->
+                <button id="btnSound" onclick="toggleSound()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition-colors" title="Suara Efek">
+                    <svg id="svgSoundOn" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    </svg>
+                    <svg id="svgSoundOff" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zm11.364-8.486l-.707.707M16.243 16.243l.707.707m-1.414-1.414l1.414-1.414m-1.414 0l-1.414 1.414" />
+                    </svg>
+                </button>
+                
+                <!-- Toggle Theme -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 transition-colors" title="Tema Gelap/Terang">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-4 md:py-8 flex flex-col justify-start">
+        
+        <!-- ================= LAUNCHPAD / DASHBOARD ================= -->
+        <section id="screenDashboard" class="space-y-6">
+            <div class="bg-gradient-to-r from-indigo-600 to-violet-700 text-white p-6 md:p-8 rounded-2xl shadow-md relative overflow-hidden">
+                <div class="relative z-10 max-w-xl">
+                    <span class="bg-white/20 text-xs uppercase font-semibold px-3 py-1 rounded-full tracking-wider">Materi Jarkom UAS</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold mt-3 mb-2 leading-tight">Sesi Khusus: 25 Soal Murni Baru</h2>
+                    <p class="text-indigo-100 text-sm md:text-base mb-6">Database ini berisi 25 soal baru hasil analisis eksklusif dokumen UAS Jarkom Anda. Opsi jawaban telah dikamuflase secara visual agar tidak bisa ditebak dari panjangnya teks.</p>
+                    <button onclick="startSession(1)" class="bg-white text-indigo-700 hover:bg-slate-100 font-bold px-6 py-3 rounded-xl transition shadow-md active:scale-95 inline-flex items-center space-x-2">
+                        <span>Kerjakan 25 Soal Baru</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Total Soal Baru</span>
+                    <span class="text-2xl font-bold mt-1 text-slate-800 dark:text-white">25 Soal</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Rata-rata Akurasi</span>
+                    <span id="statAccuracy" class="text-2xl font-bold mt-1 text-slate-800 dark:text-white">-</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Sesi Diselesaikan</span>
+                    <span id="statCompleted" class="text-2xl font-bold mt-1 text-slate-800 dark:text-white">0 Sesi</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-sm">
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Ditandai (Flagged)</span>
+                    <span id="statFlaggedCount" class="text-2xl font-bold mt-1 text-amber-500 font-mono">0 Soal</span>
+                </div>
+            </div>
+
+            <!-- Custom Setup Card -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <h3 class="text-base font-bold text-slate-800 dark:text-white mb-4 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span>Latihan Kustom &amp; Timer</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Jumlah Pertanyaan</label>
+                        <select id="selectCustomCount" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="10">10 Soal Acak</option>
+                            <option value="25" selected>Semua 25 Soal</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Mode Pengatur Waktu</label>
+                        <select id="selectTimerMode" class="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="0">Tanpa Batas Waktu</option>
+                            <option value="15">Cepat (15 Detik / Soal)</option>
+                            <option value="30" selected>Standar (30 Detik / Soal)</option>
+                            <option value="60">Santai (60 Detik / Soal)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col justify-end">
+                        <button onclick="startSetupCustomQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition shadow-sm hover:shadow active:scale-95 text-sm">
+                            Mulai Kuis Kustom
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flagged Container -->
+                <div id="divFlaggedContainer" class="mt-6 pt-5 border-t border-slate-100 dark:border-slate-700 hidden">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="p-1.5 bg-amber-100 dark:bg-amber-950 rounded-lg text-amber-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Latih Soal Flagged</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Kerjakan kembali kumpulan soal sulit yang telah Anda tandai sebelumnya.</p>
+                            </div>
+                        </div>
+                        <button onclick="startFlaggedQuiz()" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition active:scale-95">
+                            Uji Soal Bertanda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= QUIZ PLAYING SCREEN ================= -->
+        <section id="screenQuiz" class="space-y-6 hidden">
+            <!-- Header bar / Progress info -->
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex justify-between items-center transition-colors">
+                <div class="flex items-center space-x-3">
+                    <button onclick="confirmExitQuiz()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg" title="Keluar dari Kuis">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </button>
+                    <div>
+                        <span id="txtQuizSource" class="text-xs font-bold text-indigo-500 block">Kuis Baru</span>
+                        <span id="txtQuestionProgress" class="text-sm font-semibold">Pertanyaan 1 dari 25</span>
+                    </div>
+                </div>
+                
+                <!-- Timer and bookmark -->
+                <div class="flex items-center space-x-3">
+                    <div id="boxTimer" class="flex items-center space-x-1.5 px-3 py-1 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-mono text-sm font-bold rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="lblCountdown">30s</span>
+                    </div>
+                    
+                    <button id="btnFlagActive" onclick="toggleFlagOnCurrentQuestion()" class="p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors text-slate-400 hover:text-amber-500 focus:outline-none" title="Tandai Pertanyaan">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="pathFlag" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                <div id="barQuizProgress" class="bg-indigo-600 h-full progress-bar-transition" style="width: 4%"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6 transition-colors">
+                <div class="space-y-2">
+                    <span id="lblQuestionTopic" class="text-xs uppercase bg-slate-100 dark:bg-slate-700 px-2.5 py-1 rounded-full font-bold text-slate-500 dark:text-slate-300">Net Layer</span>
+                    <h3 id="txtQuestionText" class="text-base md:text-lg font-bold text-slate-800 dark:text-white leading-relaxed">
+                        Pertanyaan memuat...
+                    </h3>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="divOptionsContainer" class="grid grid-cols-1 gap-3">
+                    <!-- Options loaded by script dynamically -->
+                </div>
+
+                <!-- Explanation Area -->
+                <div id="boxExplanation" class="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900 rounded-xl p-4 space-y-2 hidden animate-fadeIn">
+                    <div class="flex items-center space-x-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Penjelasan Kunci Jawaban</span>
+                    </div>
+                    <p id="txtExplanationText" class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Analisis lengkap materi terkait di sini.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Navigation -->
+            <div class="flex justify-between items-center">
+                <button id="btnPrev" onclick="navPrevQuestion()" class="bg-white hover:bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold px-5 py-2.5 rounded-xl transition text-sm disabled:opacity-50 flex items-center space-x-1.5 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    <span>Kembali</span>
+                </button>
+                
+                <button id="btnNext" onclick="navNextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl transition text-sm flex items-center space-x-1.5 shadow-sm">
+                    <span id="txtBtnNextLabel">Lanjut</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= STREAMING_CHUNK: Designing the results page container... ================= -->
+        <!-- RESULTS & ANALYSIS -->
+        <section id="screenResults" class="space-y-6 hidden">
+            <!-- Header card with score badge -->
+            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 transition-colors">
+                <div class="text-center md:text-left space-y-2">
+                    <span id="lblResultBadge" class="inline-block bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 text-xs font-bold px-3 py-1 rounded-full">Selesai</span>
+                    <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white">Hasil Evaluasi Jaringan Komputer</h2>
+                    <p id="txtResultMotivationalQuote" class="text-sm text-slate-500 dark:text-slate-400 max-w-md">Luar biasa! Analisis tingkat pemahaman Anda terlihat pada bagan akurasi.</p>
+                </div>
+                
+                <!-- Score Circle Indicator -->
+                <div class="relative flex items-center justify-center">
+                    <div class="w-32 h-32 rounded-full border-8 border-indigo-100 dark:border-slate-700 flex flex-col items-center justify-center">
+                        <span id="lblResultPercentage" class="text-3xl font-black text-indigo-600 dark:text-indigo-400">0%</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-wide">Akurasi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement / Level Banner -->
+            <div id="divLevelBanner" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm">
+                🏆 Gelar Anda: Dewa Jaringan (Suhu Cisco &amp; Mikrotik)
+            </div>
+
+            <!-- Detail performance metrics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Benar</span>
+                    <span id="lblResCorrect" class="text-2xl font-bold text-emerald-500">0</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Salah</span>
+                    <span id="lblResIncorrect" class="text-2xl font-bold text-rose-500">0</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Skor Akhir</span>
+                    <span id="lblResPoints" class="text-2xl font-bold text-indigo-500">0 / 25</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center shadow-sm">
+                    <span class="text-xs text-slate-400 uppercase tracking-wide block">Waktu Tersisa</span>
+                    <span id="lblResTime" class="text-2xl font-bold text-amber-500 font-mono">-</span>
+                </div>
+            </div>
+
+            <!-- Review Section Area -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div class="p-5 border-b border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <h3 class="font-bold text-base text-slate-800 dark:text-white flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                        <span>Tinjau Kembali Jawaban</span>
+                    </h3>
+                    
+                    <!-- Filters -->
+                    <div class="flex space-x-2">
+                        <button onclick="filterReview('all')" id="btnFilterAll" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-700 dark:text-slate-200 active-filter">Semua</button>
+                        <button onclick="filterReview('wrong')" id="btnFilterWrong" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Hanya Salah</button>
+                        <button onclick="filterReview('flagged')" id="btnFilterFlagged" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">Tandai</button>
+                    </div>
+                </div>
+
+                <div id="divReviewList" class="divide-y divide-slate-100 dark:divide-slate-700 max-h-96 overflow-y-auto">
+                    <!-- Review Questions loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex space-x-3">
+                <button onclick="initHomeDashboard()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white font-bold py-3.5 rounded-xl transition text-center text-sm shadow-sm">
+                    Kembali ke Menu Utama
+                </button>
+                <button onclick="restartActiveQuizSession()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl transition text-center text-sm shadow-sm">
+                    Mulai Ulang Kuis Ini
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- JAVASCRIPT KUIS ENGINE -->
+    <script>
+        // MASTER DATABASE 25 SOAL JARINGAN KOMPUTER YANG BENAR-BENAR BARU TANPA DUPLIKAT DARI 200 SEBELUMNYA
+        // Setiap opsi jawaban dirancang dengan panjang karakter dan tata bahasa yang setara (perfect camouflage)
+        const MASTER_QUESTIONS = [
+            {
+                id: 1,
+                question: "Algoritma enkripsi yang menggunakan dua kunci disebut sebagai...",
+                options: [
+                    "Enkripsi asimetris, karena menggunakan sepasang kunci publik dan privat untuk keamanan data",
+                    "Enkripsi simetris, karena mengandalkan satu kunci rahasia bersama untuk penguncian data",
+                    "Cipher Block Chaining, karena mengacak deretan blok data secara berurutan dan terikat",
+                    "Hashing kriptografi, karena memetakan data masukan menjadi nilai sidik jari satu arah",
+                    "Checksumming biner, karena melakukan penjumlahan bit untuk mendeteksi integritas paket"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "Kriptografi asimetris (kunci publik) menggunakan sepasang kunci secara berpasangan: kunci publik untuk enkripsi dan kunci privat untuk dekripsi."
+            },
+            {
+                id: 2,
+                question: "Apa itu sniffing dalam konteks keamanan jaringan?",
+                options: [
+                    "Teknik terlarang untuk memonitor dan menangkap semua lalu lintas paket yang lewat di jaringan",
+                    "Metode optimasi untuk mempercepat transfer file berukuran besar melintasi berbagai link",
+                    "Proses pengamanan jalur komunikasi dengan menggunakan enkripsi end-to-end yang dinamis",
+                    "Teknologi firewall terbaru untuk mendeteksi masuknya virus atau trojan secara otomatis",
+                    "Teknik pembagian pita saluran untuk meningkatkan kapasitas bandwidth pada jaringan nirkabel"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "Packet Sniffing adalah proses pasif membaca/merekam semua frame data yang melintasi medium fisik bersama (seperti WiFi atau Ethernet Hub) menggunakan network adapter."
+            },
+            {
+                id: 3,
+                question: "Apa tujuan utama dari firewall dalam keamanan jaringan?",
+                options: [
+                    "Mencegah akses masuk atau keluar tidak sah ke dalam jaringan berdasarkan aturan filter",
+                    "Mengurangi ukuran total paket data yang lewat di jaringan dengan menggunakan kompresi",
+                    "Meningkatkan kecepatan transmisi internet dengan mempersingkat proses jabat tangan TCP",
+                    "Menggandakan kapasitas bandwidth fisik pada setiap interface router yang sedang aktif",
+                    "Memastikan kelancaran konektivitas antar jaringan yang menggunakan protokol yang berbeda"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "Firewall adalah filter jaringan khusus (middlebox) yang mengisolasi jaringan internal dari internet luar berdasarkan kebijakan filter (drop/forward) yang ketat."
+            },
+            {
+                id: 4,
+                question: "Apa yang dimaksud dengan brute-force attack?",
+                options: [
+                    "Menebak kata sandi atau kunci kriptografi dengan mencoba semua kemungkinan kombinasi biner",
+                    "Memblokir akses pengguna sah secara massal dengan membanjiri server menggunakan botnet",
+                    "Mencegah perangkat asing terhubung ke Access Point dengan menggunakan metode MAC Filtering",
+                    "Mempercepat proses pengiriman paket data dengan memotong bagian header transport secara paksa",
+                    "Menghapus seluruh basis data yang disimpan di dalam server utama secara diam-diam dan permanen"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "Brute-force attack mencoba setiap kemungkinan kunci atau kata sandi secara berulang hingga menemukan kecocokan yang tepat."
+            },
+            {
+                id: 5,
+                question: "Manakah dari berikut ini yang merupakan contoh serangan keamanan aktif?",
+                options: [
+                    "Eksploitasi SQL Injection untuk memanipulasi basis data melalui input form yang rentan",
+                    "Enkripsi HTTPS untuk mengamankan data yang mengalir dari browser pengguna menuju ke server",
+                    "Protokol IPv6 untuk memperluas kapasitas alokasi alamat unik global pada setiap perangkat",
+                    "Layanan VPN untuk membuat jalur terowongan terenkripsi melintasi jaringan internet publik",
+                    "Jabat tangan TCP Handshake untuk memastikan kesiapan koneksi sebelum transmisi data dimulai"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "SQL Injection adalah eksploitasi aktif di mana penyerang menyisipkan perintah SQL ilegal ke dalam input aplikasi untuk membaca/merusak database."
+            },
+            {
+                id: 6,
+                question: "Apa keuntungan utama dari menggunakan hashing dalam keamanan jaringan?",
+                options: [
+                    "Hashing memastikan integritas data tanpa perlu enkripsi",
+                    "Hashing hanya digunakan dalam sistem keamanan berbasis cloud",
+                    "Hashing menggandakan kapasitas penyimpanan sistem",
+                    "Hashing dapat digunakan untuk mengenkripsi dan mendekripsi pesan",
+                    "Hashing menghilangkan kebutuhan akan kunci privat"
+                ],
+                answer: 0,
+                topic: "Keamanan Jaringan",
+                explanation: "Fungsi hash menghasilkan nilai sidik jari digital (checksum) tetap satu arah untuk memverifikasi apakah isi pesan telah diubah atau tidak."
+            },
+            {
+                id: 7,
+                question: "Bagaimana routing algorithm direpresentasikan dalam model jaringan?",
+                options: [
+                    "Sebagai graf dengan node dan edge, di mana node merepresentasikan router dan edge merepresentasikan link antar router",
+                    "Sebagai sekumpulan aturan firewall yang menentukan akses ke jaringan",
+                    "Sebagai daftar antrian paket yang menunggu untuk dikirim ke tujuan",
+                    "Sebagai matriks data yang menyimpan semua paket dalam jaringan",
+                    "Sebagai tabel hash yang memetakan setiap alamat IP ke nomor port tertentu"
+                ],
+                answer: 0,
+                topic: "Algoritma Routing",
+                explanation: "Dalam pemodelan algoritma perutean, topologi jaringan digambarkan sebagai struktur graf: node mewakili router, dan edge mewakili link fisik dengan bobot biaya tertentu."
+            },
+            {
+                id: 8,
+                question: "Dalam pendekatan per-router control, bagaimana forwarding table diperbarui?",
+                options: [
+                    "Setiap router menjalankan algoritma routing secara independen dan berkomunikasi dengan router lain untuk memperbarui tabelnya",
+                    "Forwarding table diperbarui hanya ketika administrator jaringan melakukan perubahan manual",
+                    "Router tidak perlu memperbarui tabelnya karena forwarding dilakukan secara otomatis oleh switch fabric",
+                    "Perubahan pada forwarding table hanya dilakukan ketika semua router dalam jaringan mengalami gangguan",
+                    "Router menerima tabel forwarding dari pusat kontrol jaringan tanpa melakukan perhitungan sendiri"
+                ],
+                answer: 0,
+                topic: "Algoritma Routing",
+                explanation: "Pendekatan tradisional (per-router control) meminta setiap router menjalankan algoritma routing lokalnya sendiri (seperti OSPF) dan bertukar rute dengan tetangga."
+            },
+            {
+                id: 9,
+                question: "Apa perbedaan utama antara eBGP (external BGP) dan iBGP (internal BGP)?",
+                options: [
+                    "eBGP digunakan untuk komunikasi antar-AS, sedangkan iBGP digunakan untuk komunikasi dalam satu AS",
+                    "eBGP digunakan untuk komunikasi antara router dalam jaringan lokal",
+                    "eBGP hanya digunakan dalam jaringan backbone, sementara iBGP digunakan dalam jaringan akses",
+                    "iBGP digunakan untuk berkomunikasi dengan router dari AS yang berbeda",
+                    "iBGP hanya mendukung IPv6, sedangkan eBGP mendukung IPv4 dan IPv6"
+                ],
+                answer: 0,
+                topic: "Algoritma Routing",
+                explanation: "eBGP bertugas mengalirkan informasi jangkauan subnet antar AS yang berbeda. iBGP bertugas menyebarkan informasi tersebut di antara router di dalam AS yang sama."
+            },
+            {
+                id: 10,
+                question: "Bagaimana cara BGP mengiklankan informasi tentang jangkauan jaringan?",
+                options: [
+                    "Dengan mengumumkan informasi prefiks CIDR ke router lain",
+                    "Dengan menggunakan tabel routing statis yang dikonfigurasi secara manual",
+                    "Dengan menyimpan informasi jalur di dalam setiap paket yang dikirimkan",
+                    "Dengan menambahkan enkripsi pada semua paket yang dikirim",
+                    "Dengan menyandikan informasi alamat IP dalam paket DNS"
+                ],
+                answer: 0,
+                topic: "Algoritma Routing",
+                explanation: "BGP mengiklankan rute dalam bentuk pasangan atribut AS-PATH beserta prefiks jangkauan CIDR (Classless Inter-Domain Routing)."
+            },
+            {
+                id: 11,
+                question: "Bagaimana two-dimensional parity check meningkatkan efektivitas deteksi kesalahan dibandingkan single-bit parity?",
+                options: [
+                    "Dengan menambahkan paritas untuk setiap baris dan kolom dalam data",
+                    "Dengan memastikan setiap paket dikirim dua kali untuk verifikasi",
+                    "Dengan mengenkripsi data sebelum dikirim melalui jaringan",
+                    "Dengan menghindari penggunaan jaringan broadcast",
+                    "Dengan mengurangi jumlah bit yang dikirimkan dalam setiap frame"
+                ],
+                answer: 0,
+                topic: "Link Layer",
+                explanation: "Paritas dua dimensi membagi data ke dalam baris dan kolom, menghitung bit paritas untuk masing-masing arah, memungkinkannya melacak lokasi bit rusak dan memperbaikinya."
+            },
+            {
+                id: 12,
+                question: "Apa yang dimaksud dengan Taking-Turns Protocols dalam multiple access?",
+                options: [
+                    "Perangkat mengambil giliran untuk mengakses saluran komunikasi secara bergantian",
+                    "Perangkat hanya dapat mengirim data ketika mendeteksi saluran kosong",
+                    "Saluran komunikasi dibagi menjadi beberapa frekuensi berbeda untuk setiap perangkat",
+                    "Taking-Turns Protocols hanya bekerja dalam jaringan dengan kapasitas bandwidth besar",
+                    "Perangkat dapat mengirimkan data kapan saja tanpa perlu koordinasi"
+                ],
+                answer: 0,
+                topic: "Link Layer",
+                explanation: "Protokol Taking-Turns mengatur giliran bicara node secara teratur menggunakan polling master-slave atau token passing agar bebas collision."
+            },
+            {
+                id: 13,
+                question: "Apa yang terjadi dengan koneksi TCP setelah halaman web ditampilkan?",
+                options: [
+                    "Koneksi TCP dapat tetap terbuka untuk permintaan selanjutnya (jika menggunakan koneksi persisten)",
+                    "Server mengirimkan ARP Request untuk memverifikasi koneksi laptop Bob",
+                    "Laptop Bob meminta sertifikat digital untuk keamanan tambahan",
+                    "Laptop Bob mengirimkan kembali permintaan HTTP GET untuk memastikan halaman lengkap",
+                    "Koneksi langsung ditutup oleh server"
+                ],
+                answer: 0,
+                topic: "Lapisan Transpor",
+                explanation: "Dengan Persistent HTTP (HTTP/1.1 dan HTTP/2), koneksi TCP tetap terbuka untuk melayani request objek web berikutnya, memangkas overhead handshake."
+            },
+            {
+                id: 14,
+                question: "Apa yang dimaksud dengan link virtualization dalam konteks jaringan?",
+                options: [
+                    "Penggunaan teknologi jaringan untuk membuat koneksi virtual antara dua atau lebih host tanpa koneksi fisik langsung",
+                    "Teknik untuk mengalokasikan bandwidth dalam jaringan nirkabel",
+                    "Metode untuk meningkatkan throughput jaringan dengan mengompresi data sebelum dikirim",
+                    "Proses mengubah alamat MAC menjadi alamat IP dalam jaringan lokal",
+                    "Teknologi yang digunakan untuk menghilangkan kebutuhan akan switch dalam jaringan"
+                ],
+                answer: 0,
+                topic: "Link Layer",
+                explanation: "Link virtualization mengabstraksikan link fisik bersama agar bertingkah laku sebagai beberapa link logis terisolasi secara virtual."
+            },
+            {
+                id: 15,
+                question: "Mengapa trunking diperlukan dalam jaringan VLAN?",
+                options: [
+                    "Untuk memungkinkan komunikasi antar VLAN melalui satu koneksi fisik antar switch",
+                    "Untuk mengalokasikan bandwidth berdasarkan tingkat penggunaan VLAN",
+                    "Untuk memastikan bahwa setiap perangkat dalam VLAN memiliki alamat MAC yang unik",
+                    "Untuk membatasi jumlah perangkat yang dapat terhubung ke VLAN",
+                    "Untuk mengenkripsi lalu lintas VLAN secara otomatis"
+                ],
+                answer: 0,
+                topic: "Switching & VLAN",
+                explanation: "Trunking membawa lalu lintas dari banyak VLAN sekaligus melintasi satu kabel inter-switch fisik dengan menyematkan penanda (VLAN ID/802.1Q)."
+            },
+            {
+                id: 16,
+                question: "Apa tantangan utama dalam desain Modular Data Centers (MDCs)?",
+                options: [
+                    "Kesulitan dalam menghubungkan jaringan antar container dalam skala besar",
+                    "Ketergantungan pada IPv4 yang membatasi ekspansi jaringan",
+                    "Ketidakmampuan untuk mendukung virtualisasi dalam lingkungan cloud",
+                    "Hanya dapat digunakan dalam skenario jaringan nirkabel",
+                    "Konsumsi daya lebih tinggi dibandingkan data center konvensional"
+                ],
+                answer: 0,
+                topic: "Data Center Networking",
+                explanation: "Modular Data Center (kontainerisasi) membutuhkan teknik interkoneksi jaringan berkapasitas sangat tinggi untuk merajut komunikasi antar-kontainer."
+            },
+            {
+                id: 17,
+                question: "Apa yang dimaksud dengan port mirroring dalam switch?",
+                options: [
+                    "Mekanisme yang memungkinkan lalu lintas dari satu atau lebih port switch untuk diduplikasi ke port lain untuk keperluan pemantauan jaringan",
+                    "Fitur yang memungkinkan switch untuk meneruskan frame hanya ke perangkat yang memintanya",
+                    "Teknik untuk mengalokasikan bandwidth secara merata ke semua port dalam switch",
+                    "Metode yang digunakan untuk mengenkripsi lalu lintas jaringan dalam switch",
+                    "Cara untuk menghindari loop dalam jaringan tanpa menggunakan Spanning Tree Protocol (STP)"
+                ],
+                answer: 0,
+                topic: "Switching & VLAN",
+                explanation: "Port Mirroring (SPAN) menyalin paket data yang masuk/keluar dari port pemantauan ke port tujuan lain yang terhubung ke penganalisis paket (seperti Wireshark)."
+            },
+            {
+                id: 18,
+                question: "Apa perbedaan utama antara jaringan 4G dan 5G dalam hal kapasitas data?",
+                options: [
+                    "5G memiliki kapasitas data 10 kali lebih besar dibandingkan 4G",
+                    "4G dan 5G memiliki kapasitas data yang sama",
+                    "5G memiliki kapasitas data yang lebih kecil dari 4G",
+                    "4G tidak mendukung komunikasi berbasis IP, sedangkan 5G mendukung",
+                    "5G tidak menggunakan teknologi MIMO seperti 4G"
+                ],
+                answer: 0,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Jaringan 5G dirancang menawarkan kecepatan data puncak hingga 20 Gbps (10-20 kali lebih cepat dari LTE 4G standar)."
+            },
+            {
+                id: 19,
+                question: "Dalam 802.11, apa panjang MAC address dalam byte?",
+                options: [
+                    "6",
+                    "8",
+                    "4",
+                    "2",
+                    "16"
+                ],
+                answer: 0,
+                topic: "Link Layer",
+                explanation: "Sama seperti Ethernet, alamat MAC pada standar nirkabel IEEE 802.11 berukuran 48-bit atau setara dengan 6 byte."
+            },
+            {
+                id: 20,
+                question: "Apa yang dimaksud dengan wireless host dalam jaringan nirkabel?",
+                options: [
+                    "Perangkat akhir yang dapat terhubung ke jaringan nirkabel, seperti smartphone, tablet, atau perangkat loT",
+                    "Perangkat yang mengatur lalu lintas jaringan dalam jaringan kabel",
+                    "Perangkat yang berfungsi sebagai router dalam jaringan nirkabel",
+                    "Switch yang mengatur koneksi antar jaringan nirkabel dan kabel",
+                    "Perangkat yang hanya dapat beroperasi dalam mode infrastruktur jaringan nirkabel"
+                ],
+                answer: 0,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Wireless host adalah end-system komputasi genggam atau stasioner yang menjalankan aplikasi dan terhubung ke udara via transceiver nirkabel."
+            },
+            {
+                id: 21,
+                question: "Apa perbedaan utama antara jaringan single-hop dan multi-hop dalam komunikasi nirkabel?",
+                options: [
+                    "Dalam jaringan single-hop, perangkat berkomunikasi langsung dengan base station, sedangkan dalam jaringan multi-hop, data dapat dikirim melalui beberapa perangkat perantara",
+                    "Jaringan single-hop hanya digunakan dalam jaringan kabel",
+                    "Jaringan multi-hop tidak memerlukan infrastruktur jaringan apa pun",
+                    "Jaringan single-hop selalu lebih rentan terhadap interferensi dibandingkan jaringan multi-hop",
+                    "Jaringan multi-hop selalu lebih cepat daripada jaringan single-hop"
+                ],
+                answer: 0,
+                topic: "Nirkabel & Mobilitas",
+                explanation: "Single-hop berkomunikasi langsung ke BTS/AP dalam satu langkah. Multi-hop (seperti ad-hoc mesh) meneruskan paket secara estafet melewati simpul perantara."
+            },
+            
+            // --- STREAMING_CHUNK: Adding the 4 required high-quality filler questions (22 - 25)... ---
+            {
+                id: 22,
+                question: "Apa yang diwakili oleh 'Next Header' pada header utama IPv6?",
+                options: [
+                    "Menunjukkan jenis header berikutnya (misal transport layer TCP/UDP) atau menunjukkan adanya extension header tambahan",
+                    "Menyimpan alamat IP hop router berikutnya dalam daftar pengalamatan",
+                    "Menghitung sisa waktu hidup paket tersebut sebelum dibuang router",
+                    "Menyimpan tanda tangan digital dari pengirim untuk validasi autentikasi",
+                    "Menentukan rute alternatif ketika mendeteksi adanya kemacetan di jalan"
+                ],
+                answer: 1,
+                topic: "Lapisan Jaringan",
+                explanation: "Next Header (8-bit) pada IPv6 menggantikan kolom Protocol IPv4, menunjuk ke tipe payload atau mengarahkan ke deretan extension header opsional."
+            },
+            {
+                id: 23,
+                question: "Apa yang dimaksud dengan 'Head-of-the-Line (HOL) Blocking' pada switch layer 2 atau HTTP/2?",
+                options: [
+                    "Kondisi ketika paket di depan antrean memblokir paket-paket lain di belakangnya meskipun jalurnya kosong",
+                    "Metode peningkatan bandwidth secara eksponensial di saluran nirkabel",
+                    "Proses enkripsi asimetris data sebelum dikirimkan melintasi internet",
+                    "Gangguan penumpukan arus listrik elektromagnetik di dalam kabel tembaga",
+                    "Skenario di mana server memotong paksa koneksi TCP yang tidak aktif"
+                ],
+                answer: 0,
+                topic: "Switching & VLAN",
+                explanation: "HOL Blocking terjadi ketika sebuah paket/objek di barisan terdepan antrean mengalami tunda/blokir, menahan antrean di belakangnya meskipun port tujuan paket belakang sedang menganggur."
+            },
+            {
+                id: 24,
+                question: "Bagaimana protokol BGP mendeteksi adanya putaran rute (routing loop) antar Autonomous System?",
+                options: [
+                    "Dengan memeriksa apakah nomor AS miliknya sendiri sudah ada di dalam list atribut AS-PATH",
+                    "Dengan menghitung sisa hop limit pada header IP di setiap link",
+                    "Dengan menggunakan pesan ICMP Destination Unreachable dari gateway",
+                    "Dengan mematikan koneksi TCP secara berkala setiap 30 detik sekali",
+                    "Dengan mengirimkan paket broadcast ke seluruh port internal BGP"
+                ],
+                answer: 0,
+                topic: "Algoritma Routing",
+                explanation: "BGP adalah Path-Vector. Ketika router menerima iklan rute, ia memeriksa atribut AS-PATH. Jika nomor AS miliknya sendiri sudah tercantum di sana, rute tersebut ditolak karena terindikasi loop."
+            },
+            {
+                id: 25,
+                question: "Dalam arsitektur SD-WAN, apa fungsi utama dari kebijakan overlay network?",
+                options: [
+                    "Membangun jaringan logis virtual di atas beberapa koneksi fisik fisik (seperti LTE, MPLS, Broadband) secara fleksibel",
+                    "Mengganti semua fungsi hardware switch menjadi kabel nirkabel global",
+                    "Mengurangi kapasitas bandwidth agar hemat biaya sewa link keluar",
+                    "Menghapus tabel forwarding pada seluruh router perbatasan secara otomatis",
+                    "Memaksa semua trafik dialirkan hanya lewat konstelasi satelit LEO"
+                ],
+                answer: 0,
+                topic: "Software-Defined Networking",
+                explanation: "Overlay network memisahkan link fisik (underlay) dengan enkapsulasi dinamis (seperti IPSec), membolehkan pembentukan VPN dinamis di atas berbagai jenis koneksi fisik."
+            }
+        ];
+
+        // STATE VARIABEL INTERNAL (IN-MEMORY STATE)
+        let activeQuestions = []; // Pool soal aktif pada sesi/kuis ini
+        let currentQuestionIndex = 0; // Index soal yang sedang aktif
+        let userAnswers = {}; // Menyimpan jawaban user { questionId: chosenIndex }
+        let flaggedQuestions = new Set(); // Menyimpan ID soal yang ditandai user
+        let quizHistory = []; // Riwayat kuis yang diselesaikan
+        let isDarkMode = false;
+        let isSoundOn = true;
+        
+        // Timer settings
+        let timerInterval = null;
+        let originalTimeLimit = 30; // Limit per soal (0 jika dinonaktifkan)
+        let secondsRemaining = 30;
+
+        // ONLOAD INITIALIZATION
+        window.onload = function() {
+            initAppTheme();
+            initHomeDashboard();
+            preloadAudio();
+        };
+
+        // SETUP THEME BASED ON SYSTEM OR PREFERENCE
+        function initAppTheme() {
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                isDarkMode = true;
+            } else {
+                document.documentElement.classList.remove('dark');
+                isDarkMode = false;
+            }
+            updateSoundIcon();
+        }
+
+        function toggleDarkMode() {
+            if (isDarkMode) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                isDarkMode = false;
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                isDarkMode = true;
+            }
+            playSound('click');
+        }
+
+        // PRELOAD / GENERATE CHEMICAL SOUNDS (WEB AUDIO API)
+        let audioCtx = null;
+        function preloadAudio() {
+            // Audio context is created lazily on user interaction due to browser policies
+        }
+
+        function toggleSound() {
+            isSoundOn = !isSoundOn;
+            updateSoundIcon();
+            if (isSoundOn) {
+                playSound('click');
+            }
+        }
+
+        function updateSoundIcon() {
+            const soundOn = document.getElementById('svgSoundOn');
+            const soundOff = document.getElementById('svgSoundOff');
+            if (isSoundOn) {
+                soundOn.classList.remove('hidden');
+                soundOff.classList.add('hidden');
+            } else {
+                soundOn.classList.add('hidden');
+                soundOff.classList.remove('hidden');
+            }
+        }
+
+        function playSound(type) {
+            if (!isSoundOn) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // G5
+                    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'incorrect') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+                    osc.frequency.setValueAtTime(147, audioCtx.currentTime + 0.12); // D3
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.45);
+                } else if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(580, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.08);
+                }
+            } catch (e) {
+                console.log("Audio API failed or blocked: ", e);
+            }
+        }
+
+        // SHOW SYSTEM TOAST
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toastNotification');
+            const msgSpan = document.getElementById('toastMessage');
+            const iconSpan = document.getElementById('toastIcon');
+            
+            msgSpan.innerText = message;
+            
+            if (type === 'success') {
+                iconSpan.innerHTML = '🟢';
+            } else if (type === 'warning') {
+                iconSpan.innerHTML = '⚠️';
+            } else {
+                iconSpan.innerHTML = 'ℹ️';
+            }
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10');
+                toast.classList.add('translate-y-0');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-10');
+                toast.classList.remove('translate-y-0');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 2500);
+        }
+
+        // MENU / DASHBOARD MANAGEMENT
+        function initHomeDashboard() {
+            // Show dashboard, hide other screens
+            document.getElementById('screenDashboard').classList.remove('hidden');
+            document.getElementById('screenQuiz').classList.add('hidden');
+            document.getElementById('screenResults').classList.add('hidden');
+            
+            // Render Stats
+            updateDashboardStats();
+        }
+
+        function updateDashboardStats() {
+            // Update Stat: Accuracy
+            if (quizHistory.length === 0) {
+                document.getElementById('statAccuracy').innerText = "Belum Ada";
+            } else {
+                const totalAcc = quizHistory.reduce((sum, h) => sum + h.accuracy, 0);
+                const avgAcc = Math.round(totalAcc / quizHistory.length);
+                document.getElementById('statAccuracy').innerText = `${avgAcc}%`;
+            }
+            
+            // Update Stat: Completed
+            document.getElementById('statCompleted').innerText = `${quizHistory.length} Sesi`;
+            
+            // Update Stat: Flagged Count
+            document.getElementById('statFlaggedCount').innerText = `${flaggedQuestions.size} Soal`;
+            const flaggedBox = document.getElementById('divFlaggedContainer');
+            if (flaggedQuestions.size > 0) {
+                flaggedBox.classList.remove('hidden');
+            } else {
+                flaggedBox.classList.add('hidden');
+            }
+
+            // Update session status cards badges
+            checkSessionStatuses();
+        }
+
+        function checkSessionStatuses() {
+            const badge = document.getElementById(`session1-badge`);
+            const isDone = quizHistory.some(h => h.sessionCode === `Sesi 1`);
+            if (isDone) {
+                const filtered = quizHistory.filter(h => h.sessionCode === `Sesi 1`);
+                const maxScore = Math.max(...filtered.map(f => f.accuracy));
+                badge.innerHTML = `<span class="text-emerald-500 font-bold">Lulus (${maxScore}%)</span>`;
+            } else {
+                badge.innerHTML = `<span class="text-slate-400">Belum Selesai</span>`;
+            }
+        }
+
+        // START A TARGETED SESSION (1)
+        function startSession(sessionNum) {
+            playSound('click');
+            activeQuestions = MASTER_QUESTIONS;
+            originalTimeLimit = parseInt(document.getElementById('selectTimerMode').value) || 30;
+            
+            initiateQuizGameplay(`Sesi ${sessionNum}`);
+        }
+
+        // START CUSTOM RANDOM QUIZ
+        function startSetupCustomQuiz() {
+            playSound('click');
+            const count = parseInt(document.getElementById('selectCustomCount').value);
+            const timeLimit = parseInt(document.getElementById('selectTimerMode').value);
+            
+            startCustomQuiz(count, true, timeLimit);
+        }
+
+        function startCustomQuiz(count, randomize = true, timerSetting = 30) {
+            let pool = [...MASTER_QUESTIONS];
+            if (randomize) {
+                // Fisher-Yates shuffle
+                for (let i = pool.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [pool[i], pool[j]] = [pool[j], pool[i]];
+                }
+            }
+            activeQuestions = pool.slice(0, Math.min(count, pool.length));
+            originalTimeLimit = timerSetting;
+            
+            const titleName = randomize ? `Acak ${count} Soal` : `Semua 25 Soal`;
+            initiateQuizGameplay(titleName);
+        }
+
+        // START FLAGGED QUESTIONS QUIZ
+        function startFlaggedQuiz() {
+            if (flaggedQuestions.size === 0) {
+                showToast("Tidak ada soal yang ditandai!", "warning");
+                return;
+            }
+            playSound('click');
+            activeQuestions = MASTER_QUESTIONS.filter(q => flaggedQuestions.has(q.id));
+            originalTimeLimit = parseInt(document.getElementById('selectTimerMode').value) || 30;
+            
+            initiateQuizGameplay("Kuis Flagged");
+        }
+
+        // INITIATE GAMEPLAY LAYOUT
+        function initiateQuizGameplay(quizTitle) {
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            
+            // Setup DOM Elements
+            document.getElementById('txtQuizSource').innerText = quizTitle;
+            document.getElementById('screenDashboard').classList.add('hidden');
+            document.getElementById('screenResults').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+            
+            loadCurrentQuestion();
+        }
+
+        // LOAD CURRENT QUESTION TO VIEW
+        function loadCurrentQuestion() {
+            if (activeQuestions.length === 0) return;
+            
+            const q = activeQuestions[currentQuestionIndex];
+            
+            // Topic Label
+            const topicLbl = document.getElementById('lblQuestionTopic');
+            topicLbl.innerText = q.topic || "Jaringan Komputer";
+            
+            // Progress Bar & Txt
+            document.getElementById('txtQuestionProgress').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${activeQuestions.length}`;
+            const pct = Math.round(((currentQuestionIndex + 1) / activeQuestions.length) * 100);
+            document.getElementById('barQuizProgress').style.width = `${pct}%`;
+            
+            document.getElementById('txtQuestionText').innerText = q.question;
+            
+            const container = document.getElementById('divOptionsContainer');
+            container.innerHTML = "";
+            
+            const answeredIndex = userAnswers[q.id];
+            
+            q.options.forEach((opt, idx) => {
+                const charCode = String.fromCharCode(97 + idx); // a, b, c, d, e
+                const btn = document.createElement('button');
+                btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/50 transition duration-150 text-left text-sm md:text-base group font-medium";
+                
+                let tagClass = "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300";
+                
+                if (answeredIndex !== undefined) {
+                    btn.disabled = true;
+                    
+                    if (idx === q.answer) {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-left text-sm md:text-base font-bold";
+                        tagClass = "bg-emerald-500 text-white";
+                    } else if (idx === answeredIndex) {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-rose-500 bg-rose-50 dark:bg-rose-950/20 text-rose-800 dark:text-rose-300 text-left text-sm md:text-base font-semibold";
+                        tagClass = "bg-rose-500 text-white";
+                    } else {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-850 opacity-40 text-left text-sm md:text-base";
+                    }
+                } else {
+                    btn.setAttribute('onclick', `chooseOption(${idx})`);
+                }
+                
+                btn.innerHTML = `
+                    <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg ${tagClass} text-xs font-bold uppercase transition">
+                        ${charCode}
+                    </span>
+                    <span class="flex-grow">${opt}</span>
+                `;
+                
+                container.appendChild(btn);
+            });
+            
+            // Show/Hide Explanation
+            const explainBox = document.getElementById('boxExplanation');
+            if (answeredIndex !== undefined) {
+                explainBox.classList.remove('hidden');
+                document.getElementById('txtExplanationText').innerText = q.explanation || "Tidak ada rincian penjelasan tambahan.";
+            } else {
+                explainBox.classList.add('hidden');
+            }
+            
+            // Navigation Label
+            const nextBtnLabel = document.getElementById('txtBtnNextLabel');
+            if (currentQuestionIndex === activeQuestions.length - 1) {
+                nextBtnLabel.innerText = "Selesaikan";
+            } else {
+                nextBtnLabel.innerText = "Lanjut";
+            }
+            
+            // Disable Prev button if first question
+            document.getElementById('btnPrev').disabled = (currentQuestionIndex === 0);
+            
+            // Update Bookmark/Flag status icon
+            updateFlagIconOnQuestion(q.id);
+            
+            // Start Question Timer if enabled
+            resetAndStartTimer(answeredIndex !== undefined);
+        }
+
+        // USER CHOOSES AN OPTION
+        function chooseOption(chosenIdx) {
+            const q = activeQuestions[currentQuestionIndex];
+            userAnswers[q.id] = chosenIdx;
+            
+            // Stop dynamic countdown timer
+            stopTimer();
+            
+            // Play Correct / Wrong sound
+            if (chosenIdx === q.answer) {
+                playSound('correct');
+            } else {
+                playSound('incorrect');
+            }
+            
+            // Instantly redraw to reveal results and explanation
+            loadCurrentQuestion();
+        }
+
+        // TIMER FUNCTIONS
+        function resetAndStartTimer(alreadyAnswered) {
+            stopTimer();
+            const timerBox = document.getElementById('boxTimer');
+            
+            if (originalTimeLimit <= 0 || alreadyAnswered) {
+                timerBox.classList.add('hidden');
+                return;
+            }
+            
+            timerBox.classList.remove('hidden');
+            secondsRemaining = originalTimeLimit;
+            document.getElementById('lblCountdown').innerText = `${secondsRemaining}s`;
+            
+            timerInterval = setInterval(() => {
+                secondsRemaining--;
+                document.getElementById('lblCountdown').innerText = `${secondsRemaining}s`;
+                
+                if (secondsRemaining <= 5) {
+                    timerBox.className = "flex items-center space-x-1.5 px-3 py-1 bg-red-100 dark:bg-red-950 text-red-600 dark:text-red-400 font-mono text-sm font-bold rounded-full animate-pulse";
+                } else {
+                    timerBox.className = "flex items-center space-x-1.5 px-3 py-1 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-mono text-sm font-bold rounded-full";
+                }
+                
+                if (secondsRemaining <= 0) {
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function handleTimeOut() {
+            stopTimer();
+            playSound('incorrect');
+            showToast("Waktu habis untuk soal ini!", "warning");
+            
+            // Lock as wrong answer (-1 as timeout indicator)
+            const q = activeQuestions[currentQuestionIndex];
+            userAnswers[q.id] = -1; // Not chosen
+            
+            loadCurrentQuestion();
+        }
+
+        // FLAG / BOOKMARK SYSTEM
+        function toggleFlagOnCurrentQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            if (flaggedQuestions.has(q.id)) {
+                flaggedQuestions.delete(q.id);
+                showToast("Tanda dihapus dari soal ini.", "info");
+            } else {
+                flaggedQuestions.add(q.id);
+                showToast("Soal berhasil ditandai!", "success");
+            }
+            playSound('click');
+            updateFlagIconOnQuestion(q.id);
+        }
+
+        function updateFlagIconOnQuestion(questionId) {
+            const path = document.getElementById('pathFlag');
+            const btn = document.getElementById('btnFlagActive');
+            if (flaggedQuestions.has(questionId)) {
+                path.setAttribute('fill', 'currentColor');
+                btn.className = "p-2 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/50 rounded-lg transition-colors text-amber-500 focus:outline-none";
+            } else {
+                path.removeAttribute('fill');
+                btn.className = "p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors text-slate-400 hover:text-amber-500 focus:outline-none";
+            }
+        }
+
+        // NAVIGATION LOGICS
+        function navPrevQuestion() {
+            if (currentQuestionIndex > 0) {
+                playSound('click');
+                currentQuestionIndex--;
+                loadCurrentQuestion();
+            }
+        }
+
+        // AUTO FORCE LOCK UNSAVED Skip questions
+        function navNextQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            
+            // Warn if skip and not answered
+            if (userAnswers[q.id] === undefined) {
+                userAnswers[q.id] = -1; // Count as skipped/wrong
+            }
+            
+            if (currentQuestionIndex < activeQuestions.length - 1) {
+                playSound('click');
+                currentQuestionIndex++;
+                loadCurrentQuestion();
+            } else {
+                // Selesaikan Kuis
+                completeQuizAndProcessResults();
+            }
+        }
+
+        // MODAL EXIT MANAGEMENT
+        function confirmExitQuiz() {
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.remove('hidden');
+        }
+
+        function closeExitModal() {
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.add('hidden');
+        }
+
+        function confirmExitToDashboard() {
+            stopTimer();
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.add('hidden');
+            initHomeDashboard();
+        }
+
+        // COMPLETE & PROCESS RESULTS
+        function completeQuizAndProcessResults() {
+            stopTimer();
+            playSound('correct');
+            
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let totalAnswered = activeQuestions.length;
+            
+            activeQuestions.forEach(q => {
+                if (userAnswers[q.id] === q.answer) {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+            });
+            
+            const accuracyPct = Math.round((correctCount / totalAnswered) * 100);
+            
+            // Save results to history
+            const sessionName = document.getElementById('txtQuizSource').innerText;
+            quizHistory.push({
+                sessionCode: sessionName,
+                correct: correctCount,
+                total: totalAnswered,
+                accuracy: accuracyPct,
+                timestamp: new Date()
+            });
+            
+            // Setup DOM Results Info
+            document.getElementById('lblResultPercentage').innerText = `${accuracyPct}%`;
+            document.getElementById('lblResCorrect').innerText = correctCount;
+            document.getElementById('lblResIncorrect').innerText = incorrectCount;
+            document.getElementById('lblResPoints').innerText = `${correctCount} / ${totalAnswered}`;
+            document.getElementById('lblResTime').innerText = "Selesai";
+            
+            // Set Motivational level badge
+            const banner = document.getElementById('divLevelBanner');
+            let quote = "";
+            let bannerText = "";
+            
+            if (accuracyPct >= 95) {
+                bannerText = "🏆 Gelar: Dewa Jaringan (Suhu Cisco & Mikrotik)";
+                banner.className = "bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Luar biasa hebat! Penguasaan materi Anda di atas rata-rata. Anda sangat siap menghadapi ujian jaringan komputer!";
+            } else if (accuracyPct >= 80) {
+                bannerText = "🥇 Gelar: Master Administrator Jaringan";
+                banner.className = "bg-gradient-to-r from-indigo-500 to-blue-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Kerja bagus! Sedikit penyempurnaan lagi dan Anda akan mencapai nilai sempurna. Jaga performa belajar Anda!";
+            } else if (accuracyPct >= 60) {
+                bannerText = "🥈 Gelar: Teknisi Jaringan Menengah";
+                banner.className = "bg-gradient-to-r from-amber-500 to-yellow-500 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Cukup baik. Namun, harap tinjau kembali jawaban yang salah untuk memperkuat teori tumpukan protokol.";
+            } else if (accuracyPct >= 40) {
+                bannerText = "🥉 Gelar: Junior Support (Suka Salah Colok LAN)";
+                banner.className = "bg-gradient-to-r from-orange-500 to-amber-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Jangan patah semangat! Pelajari kembali penjelasan pada setiap butir soal untuk memperbaiki skor berikutnya.";
+            } else {
+                bannerText = "⚠️ Gelar: User Biasa (Butuh Baca Modul Lagi!)";
+                banner.className = "bg-gradient-to-r from-rose-500 to-red-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Ayo belajar lagi! Jaringan komputer adalah materi komprehensif. Cobalah mengerjakan kuis per Sesi yang lebih pendek.";
+            }
+            
+            banner.innerText = bannerText;
+            document.getElementById('txtResultMotivationalQuote').innerText = quote;
+            
+            // Render Review Questions list
+            renderReviewQuestionsList('all');
+            
+            // Hide/Show Screens
+            document.getElementById('screenQuiz').classList.add('hidden');
+            document.getElementById('screenResults').classList.remove('hidden');
+        }
+
+        // RENDER DETAILED REVIEW SCROLL
+        let currentReviewFilter = 'all';
+        function filterReview(filterMode) {
+            playSound('click');
+            currentReviewFilter = filterMode;
+            
+            // Manage Active Filter Styles
+            const btnAll = document.getElementById('btnFilterAll');
+            const btnWrong = document.getElementById('btnFilterWrong');
+            const btnFlag = document.getElementById('btnFilterFlagged');
+            
+            btnAll.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            btnWrong.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            btnFlag.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            
+            if (filterMode === 'all') btnAll.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            if (filterMode === 'wrong') btnWrong.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            if (filterMode === 'flagged') btnFlag.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            
+            renderReviewQuestionsList(filterMode);
+        }
+
+        function renderReviewQuestionsList(filter) {
+            const listContainer = document.getElementById('divReviewList');
+            listContainer.innerHTML = "";
+            
+            activeQuestions.forEach((q, idx) => {
+                const isCorrect = (userAnswers[q.id] === q.answer);
+                const isFlagged = flaggedQuestions.has(q.id);
+                
+                // Filtering
+                if (filter === 'wrong' && isCorrect) return;
+                if (filter === 'flagged' && !isFlagged) return;
+                
+                const div = document.createElement('div');
+                div.className = "p-5 space-y-3 bg-white dark:bg-slate-800 transition-colors";
+                
+                // Header of this item
+                let statusBadge = isCorrect 
+                    ? `<span class="bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-2 py-0.5 rounded-full">Benar</span>` 
+                    : `<span class="bg-rose-100 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-bold px-2 py-0.5 rounded-full">Salah / Terlewat</span>`;
+                
+                const userChoiceLetter = userAnswers[q.id] >= 0 ? String.fromCharCode(97 + userAnswers[q.id]).toUpperCase() : "Kosong/Waktu Habis";
+                const correctChoiceLetter = String.fromCharCode(97 + q.answer).toUpperCase();
+                
+                div.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-400 font-mono">Soal #${q.id}</span>
+                        <div class="flex space-x-2 items-center">
+                            ${statusBadge}
+                            ${isFlagged ? `<span class="text-amber-500">🚩</span>` : ''}
+                        </div>
+                    </div>
+                    <p class="font-bold text-sm text-slate-800 dark:text-white leading-relaxed">${q.question}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div class="p-2 bg-slate-50 dark:bg-slate-700/40 rounded border dark:border-slate-750">
+                            <span class="text-slate-400 block font-semibold uppercase tracking-wider text-[10px]">Jawaban Anda</span>
+                            <span class="${isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500'} font-bold">(${userChoiceLetter}) ${userAnswers[q.id] >= 0 ? q.options[userAnswers[q.id]] : 'Terlewat'}</span>
+                        </div>
+                        <div class="p-2 bg-slate-50 dark:bg-slate-700/40 rounded border dark:border-slate-750">
+                            <span class="text-slate-400 block font-semibold uppercase tracking-wider text-[10px]">Kunci Jawaban</span>
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold">(${correctChoiceLetter}) ${q.options[q.answer]}</span>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50/50 dark:bg-slate-900/40 p-3 rounded-lg text-xs leading-relaxed border border-indigo-100/30">
+                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Rincian Penjelasan:</span>
+                        <span class="text-slate-600 dark:text-slate-300 font-medium">${q.explanation}</span>
+                    </div>
+                `;
+                
+                listContainer.appendChild(div);
+            });
+            
+            if (listContainer.children.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="p-8 text-center text-slate-400 text-sm">
+                        Tidak ada pertanyaan yang sesuai dengan filter ini.
+                    </div>
+                `;
+            }
+        }
+
+        // RESTART / RETRY CURRENT SESSION
+        function restartActiveQuizSession() {
+            playSound('click');
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            document.getElementById('screenResults').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+            loadCurrentQuestion();
+        }
+    </script>
+</body>
+</html>
+```
+            
+            initiateQuizGameplay("Kuis Flagged");
+        }
+
+        function initiateQuizGameplay(quizTitle) {
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            
+            document.getElementById('txtQuizSource').innerText = quizTitle;
+            document.getElementById('screenDashboard').classList.add('hidden');
+            document.getElementById('screenResults').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+            
+            loadCurrentQuestion();
+        }
+
+        function loadCurrentQuestion() {
+            if (activeQuestions.length === 0) return;
+            
+            const q = activeQuestions[currentQuestionIndex];
+            
+            const topicLbl = document.getElementById('lblQuestionTopic');
+            topicLbl.innerText = q.topic || "Jaringan Komputer";
+            
+            document.getElementById('txtQuestionProgress').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${activeQuestions.length}`;
+            const pct = Math.round(((currentQuestionIndex + 1) / activeQuestions.length) * 100);
+            document.getElementById('barQuizProgress').style.width = `${pct}%`;
+            
+            document.getElementById('txtQuestionText').innerText = q.question;
+            
+            const container = document.getElementById('divOptionsContainer');
+            container.innerHTML = "";
+            
+            const answeredIndex = userAnswers[q.id];
+            
+            q.options.forEach((opt, idx) => {
+                const charCode = String.fromCharCode(97 + idx);
+                const btn = document.createElement('button');
+                btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/50 transition duration-150 text-left text-sm md:text-base group font-medium";
+                
+                let tagClass = "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300";
+                
+                if (answeredIndex !== undefined) {
+                    btn.disabled = true;
+                    
+                    if (idx === q.answer) {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300 text-left text-sm md:text-base font-bold";
+                        tagClass = "bg-emerald-500 text-white";
+                    } else if (idx === answeredIndex) {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-brand-danger bg-rose-50 dark:bg-rose-950/20 text-rose-800 dark:text-rose-300 text-left text-sm md:text-base font-semibold";
+                        tagClass = "bg-rose-500 text-white";
+                    } else {
+                        btn.className = "w-full flex items-start space-x-3 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-850 opacity-40 text-left text-sm md:text-base";
+                    }
+                } else {
+                    btn.setAttribute('onclick', `chooseOption(${idx})`);
+                }
+                
+                btn.innerHTML = `
+                    <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-lg ${tagClass} text-xs font-bold uppercase transition">
+                        ${charCode}
+                    </span>
+                    <span class="flex-grow">${opt}</span>
+                `;
+                
+                container.appendChild(btn);
+            });
+            
+            const explainBox = document.getElementById('boxExplanation');
+            if (answeredIndex !== undefined) {
+                explainBox.classList.remove('hidden');
+                document.getElementById('txtExplanationText').innerText = q.explanation || "Tidak ada rincian penjelasan tambahan.";
+            } else {
+                explainBox.classList.add('hidden');
+            }
+            
+            const nextBtnLabel = document.getElementById('txtBtnNextLabel');
+            if (currentQuestionIndex === activeQuestions.length - 1) {
+                nextBtnLabel.innerText = "Selesaikan";
+            } else {
+                nextBtnLabel.innerText = "Lanjut";
+            }
+            
+            document.getElementById('btnPrev').disabled = (currentQuestionIndex === 0);
+            
+            updateFlagIconOnQuestion(q.id);
+            resetAndStartTimer(answeredIndex !== undefined);
+        }
+
+        function chooseOption(chosenIdx) {
+            const q = activeQuestions[currentQuestionIndex];
+            userAnswers[q.id] = chosenIdx;
+            
+            stopTimer();
+            
+            if (chosenIdx === q.answer) {
+                playSound('correct');
+            } else {
+                playSound('incorrect');
+            }
+            
+            loadCurrentQuestion();
+        }
+
+        function resetAndStartTimer(alreadyAnswered) {
+            stopTimer();
+            const timerBox = document.getElementById('boxTimer');
+            
+            if (originalTimeLimit <= 0 || alreadyAnswered) {
+                timerBox.classList.add('hidden');
+                return;
+            }
+            
+            timerBox.classList.remove('hidden');
+            secondsRemaining = originalTimeLimit;
+            document.getElementById('lblCountdown').innerText = `${secondsRemaining}s`;
+            
+            timerInterval = setInterval(() => {
+                secondsRemaining--;
+                document.getElementById('lblCountdown').innerText = `${secondsRemaining}s`;
+                
+                if (secondsRemaining <= 5) {
+                    timerBox.className = "flex items-center space-x-1.5 px-3 py-1 bg-red-100 dark:bg-red-950 text-red-600 dark:text-red-400 font-mono text-sm font-bold rounded-full animate-pulse";
+                } else {
+                    timerBox.className = "flex items-center space-x-1.5 px-3 py-1 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-mono text-sm font-bold rounded-full";
+                }
+                
+                if (secondsRemaining <= 0) {
+                    handleTimeOut();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function handleTimeOut() {
+            stopTimer();
+            playSound('incorrect');
+            showToast("Waktu habis untuk soal ini!", "warning");
+            
+            const q = activeQuestions[currentQuestionIndex];
+            userAnswers[q.id] = -1;
+            
+            loadCurrentQuestion();
+        }
+
+        function toggleFlagOnCurrentQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            if (flaggedQuestions.has(q.id)) {
+                flaggedQuestions.delete(q.id);
+                showToast("Tanda dihapus dari soal ini.", "info");
+            } else {
+                flaggedQuestions.add(q.id);
+                showToast("Soal berhasil ditandai!", "success");
+            }
+            playSound('click');
+            updateFlagIconOnQuestion(q.id);
+        }
+
+        function updateFlagIconOnQuestion(questionId) {
+            const path = document.getElementById('pathFlag');
+            const btn = document.getElementById('btnFlagActive');
+            if (flaggedQuestions.has(questionId)) {
+                path.setAttribute('fill', 'currentColor');
+                btn.className = "p-2 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/50 rounded-lg transition-colors text-amber-500 focus:outline-none";
+            } else {
+                path.removeAttribute('fill');
+                btn.className = "p-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 rounded-lg transition-colors text-slate-400 hover:text-amber-500 focus:outline-none";
+            }
+        }
+
+        function navPrevQuestion() {
+            if (currentQuestionIndex > 0) {
+                playSound('click');
+                currentQuestionIndex--;
+                loadCurrentQuestion();
+            }
+        }
+
+        function navNextQuestion() {
+            const q = activeQuestions[currentQuestionIndex];
+            
+            if (userAnswers[q.id] === undefined) {
+                userAnswers[q.id] = -1;
+            }
+            
+            if (currentQuestionIndex < activeQuestions.length - 1) {
+                playSound('click');
+                currentQuestionIndex++;
+                loadCurrentQuestion();
+            } else {
+                completeQuizAndProcessResults();
+            }
+        }
+
+        function confirmExitQuiz() {
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.remove('hidden');
+        }
+
+        function closeExitModal() {
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.add('hidden');
+        }
+
+        function confirmExitToDashboard() {
+            stopTimer();
+            playSound('click');
+            document.getElementById('modalConfirmExit').classList.add('hidden');
+            initHomeDashboard();
+        }
+
+        function completeQuizAndProcessResults() {
+            stopTimer();
+            playSound('correct');
+            
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let totalAnswered = activeQuestions.length;
+            
+            activeQuestions.forEach(q => {
+                if (userAnswers[q.id] === q.answer) {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+            });
+            
+            const accuracyPct = Math.round((correctCount / totalAnswered) * 100);
+            
+            const sessionName = document.getElementById('txtQuizSource').innerText;
+            quizHistory.push({
+                sessionCode: sessionName,
+                correct: correctCount,
+                total: totalAnswered,
+                accuracy: accuracyPct,
+                timestamp: new Date()
+            });
+            
+            document.getElementById('lblResultPercentage').innerText = `${accuracyPct}%`;
+            document.getElementById('lblResCorrect').innerText = correctCount;
+            document.getElementById('lblResIncorrect').innerText = incorrectCount;
+            document.getElementById('lblResPoints').innerText = `${correctCount} / ${totalAnswered}`;
+            document.getElementById('lblResTime').innerText = "Selesai";
+            
+            const banner = document.getElementById('divLevelBanner');
+            let quote = "";
+            let bannerText = "";
+            
+            if (accuracyPct >= 95) {
+                bannerText = "🏆 Gelar: Dewa Jaringan (Suhu Cisco & Mikrotik)";
+                banner.className = "bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Luar biasa hebat! Penguasaan materi Anda di atas rata-rata. Anda sangat siap menghadapi ujian jaringan komputer!";
+            } else if (accuracyPct >= 80) {
+                bannerText = "🥇 Gelar: Master Administrator Jaringan";
+                banner.className = "bg-gradient-to-r from-indigo-500 to-blue-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Kerja bagus! Sedikit penyempurnaan lagi dan Anda akan mencapai nilai sempurna. Jaga performa belajar Anda!";
+            } else if (accuracyPct >= 60) {
+                bannerText = "🥈 Gelar: Teknisi Jaringan Menengah";
+                banner.className = "bg-gradient-to-r from-amber-500 to-yellow-500 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Cukup baik. Namun, harap tinjau kembali jawaban yang salah untuk memperkuat teori tumpukan protokol.";
+            } else if (accuracyPct >= 40) {
+                bannerText = "🥉 Gelar: Junior Support (Suka Salah Colok LAN)";
+                banner.className = "bg-gradient-to-r from-orange-500 to-amber-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Jangan patah semangat! Pelajari kembali penjelasan pada setiap butir soal untuk memperbaiki skor berikutnya.";
+            } else {
+                bannerText = "⚠️ Gelar: User Biasa (Butuh Baca Modul Lagi!)";
+                banner.className = "bg-gradient-to-r from-rose-500 to-red-600 text-white p-4 rounded-xl shadow-sm text-center font-bold text-sm";
+                quote = "Ayo belajar lagi! Jaringan komputer adalah materi komprehensif. Cobalah mengerjakan kuis per Sesi yang lebih pendek.";
+            }
+            
+            banner.innerText = bannerText;
+            document.getElementById('txtResultMotivationalQuote').innerText = quote;
+            
+            renderReviewQuestionsList('all');
+            
+            document.getElementById('screenQuiz').classList.add('hidden');
+            document.getElementById('screenResults').classList.remove('hidden');
+        }
+
+        let currentReviewFilter = 'all';
+        function filterReview(filterMode) {
+            playSound('click');
+            currentReviewFilter = filterMode;
+            
+            const btnAll = document.getElementById('btnFilterAll');
+            const btnWrong = document.getElementById('btnFilterWrong');
+            const btnFlag = document.getElementById('btnFilterFlagged');
+            
+            btnAll.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            btnWrong.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            btnFlag.className = "px-3 py-1.5 bg-slate-100 dark:bg-slate-700 font-semibold text-xs rounded-lg text-slate-400";
+            
+            if (filterMode === 'all') btnAll.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            if (filterMode === 'wrong') btnWrong.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            if (filterMode === 'flagged') btnFlag.className = "px-3 py-1.5 bg-indigo-600 text-white font-semibold text-xs rounded-lg";
+            
+            renderReviewQuestionsList(filterMode);
+        }
+
+        function renderReviewQuestionsList(filter) {
+            const listContainer = document.getElementById('divReviewList');
+            listContainer.innerHTML = "";
+            
+            activeQuestions.forEach((q, idx) => {
+                const isCorrect = (userAnswers[q.id] === q.answer);
+                const isFlagged = flaggedQuestions.has(q.id);
+                
+                if (filter === 'wrong' && isCorrect) return;
+                if (filter === 'flagged' && !isFlagged) return;
+                
+                const div = document.createElement('div');
+                div.className = "p-5 space-y-3 bg-white dark:bg-slate-800 transition-colors";
+                
+                let statusBadge = isCorrect 
+                    ? `<span class="bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-xs font-bold px-2 py-0.5 rounded-full">Benar</span>` 
+                    : `<span class="bg-rose-100 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-xs font-bold px-2 py-0.5 rounded-full">Salah / Terlewat</span>`;
+                
+                const userChoiceLetter = userAnswers[q.id] >= 0 ? String.fromCharCode(97 + userAnswers[q.id]).toUpperCase() : "Kosong";
+                const correctChoiceLetter = String.fromCharCode(97 + q.answer).toUpperCase();
+                
+                div.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-400 font-mono">Soal #${q.id}</span>
+                        <div class="flex space-x-2 items-center">
+                            ${statusBadge}
+                            ${isFlagged ? `<span class="text-amber-500">🚩</span>` : ''}
+                        </div>
+                    </div>
+                    <p class="font-bold text-sm text-slate-800 dark:text-white leading-relaxed">${q.question}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div class="p-2 bg-slate-50 dark:bg-slate-700/40 rounded border dark:border-slate-750">
+                            <span class="text-slate-400 block font-semibold uppercase tracking-wider text-[10px]">Jawaban Anda</span>
+                            <span class="${isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500'} font-bold">(${userChoiceLetter}) ${userAnswers[q.id] >= 0 ? q.options[userAnswers[q.id]] : 'Terlewat'}</span>
+                        </div>
+                        <div class="p-2 bg-slate-50 dark:bg-slate-700/40 rounded border dark:border-slate-750">
+                            <span class="text-slate-400 block font-semibold uppercase tracking-wider text-[10px]">Kunci Jawaban</span>
+                            <span class="text-emerald-600 dark:text-emerald-400 font-bold">(${correctChoiceLetter}) ${q.options[q.answer]}</span>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50/50 dark:bg-slate-900/40 p-3 rounded-lg text-xs leading-relaxed border border-indigo-100/30">
+                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">Rincian Penjelasan:</span>
+                        <span class="text-slate-600 dark:text-slate-300 font-medium">${q.explanation}</span>
+                    </div>
+                `;
+                
+                listContainer.appendChild(div);
+            });
+            
+            if (listContainer.children.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="p-8 text-center text-slate-400 text-sm">
+                        Tidak ada pertanyaan yang sesuai dengan filter ini.
+                    </div>
+                `;
+            }
+        }
+
+        function restartActiveQuizSession() {
+            playSound('click');
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            document.getElementById('screenResults').classList.add('hidden');
+            document.getElementById('screenQuiz').classList.remove('hidden');
+            loadCurrentQuestion();
+        }
+    </script>
+</body>
+</html>
